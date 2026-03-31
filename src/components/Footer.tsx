@@ -9,7 +9,7 @@ export default function Footer() {
               href="#"
               className="font-headline text-lg font-bold text-[var(--color-inverse-surface)]"
             >
-              <span className="text-[var(--color-copper)]">Coral</span> Capital
+              <span className="text-[var(--color-copper)]">Maya</span> Muralla
             </a>
             <p className="font-body text-sm text-[rgba(241,241,241,0.4)] mt-2 max-w-sm">
               Consultoría boutique para patrimonios inteligentes en el Caribe
@@ -52,7 +52,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-[rgba(241,241,241,0.3)]">
-            © {new Date().getFullYear()} Coral Capital. Todos los derechos
+            © {new Date().getFullYear()} Maya Muralla. Todos los derechos
             reservados.
           </p>
 

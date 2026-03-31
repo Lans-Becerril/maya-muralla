@@ -65,7 +65,7 @@ export default function Tesis() {
                   : "opacity-0 translate-y-6"
               }`}
             >
-              En un mercado saturado de promesas, Coral Capital se enfoca en
+              En un mercado saturado de promesas, Maya Muralla se enfoca en
               la certeza matemática. Nuestra tesis combina la adquisición en
               zonas de alta plusvalía con un sistema operativo impecable que
               protege y hace crecer tu patrimonio.
