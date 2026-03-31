@@ -17,9 +17,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Coral Capital | Inversiones Inmobiliarias Riviera Maya",
+  title: "Maya Muralla | Inversiones Inmobiliarias Riviera Maya",
   description:
-    "Adquiere propiedades de alta rentabilidad en la Riviera Maya con gestión llave en mano. ROI proyectado del 12%. Consultoría boutique para patrimonios inteligentes en el Caribe Mexicano.",
+    "Adquiere propiedades de alta rentabilidad en la Riviera Maya con gestión llave en mano. ROI proyectado del 12%. Consultoría para patrimonios inteligentes en el Caribe Mexicano.",
   keywords: [
     "inversiones inmobiliarias",
     "riviera maya",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "rendimientos",
   ],
   openGraph: {
-    title: "Coral Capital | Inversiones Inmobiliarias Riviera Maya",
+    title: "Maya Muralla | Inversiones Inmobiliarias Riviera Maya",
     description:
       "Propiedades optimizadas para rentas vacacionales con alta rentabilidad proyectada.",
     type: "website",

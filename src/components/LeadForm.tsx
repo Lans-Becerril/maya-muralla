@@ -6,11 +6,11 @@ import { supabase } from "@/lib/supabase";
 export default function LeadForm() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  
+
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [rango, setRango] = useState("");
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
@@ -41,7 +41,7 @@ export default function LeadForm() {
       setNombre("");
       setEmail("");
       setRango("");
-      
+
       setTimeout(() => setSubmitStatus("idle"), 6000);
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
@@ -72,21 +72,19 @@ export default function LeadForm() {
           {/* Left: Lead Magnet Copy */}
           <div>
             <p
-              className={`text-label text-[var(--color-copper)] mb-6 transition-all duration-700 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
-              }`}
+              className={`text-label text-[var(--color-copper)] mb-6 transition-all duration-700 ${isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+                }`}
             >
               Lead Magnet
             </p>
 
             <h2
-              className={`text-headline text-[var(--color-inverse-surface)] mb-6 transition-all duration-700 delay-100 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
-              }`}
+              className={`text-headline text-[var(--color-inverse-surface)] mb-6 transition-all duration-700 delay-100 ${isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+                }`}
             >
               Descarga el Reporte:{" "}
               <span className="text-[var(--color-copper-light)]">
@@ -96,11 +94,10 @@ export default function LeadForm() {
             </h2>
 
             <p
-              className={`font-body text-base leading-[1.7] text-[rgba(241,241,241,0.6)] mb-10 transition-all duration-700 delay-200 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
-              }`}
+              className={`font-body text-base leading-[1.7] text-[rgba(241,241,241,0.6)] mb-10 transition-all duration-700 delay-200 ${isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+                }`}
             >
               Evita las trampas comunes de los desarrolladores y aprende a
               identificar el verdadero potencial de un activo inmobiliario.
@@ -109,11 +106,10 @@ export default function LeadForm() {
 
             {/* Trust signals */}
             <div
-              className={`flex items-center gap-8 transition-all duration-700 delay-300 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
-              }`}
+              className={`flex items-center gap-8 transition-all duration-700 delay-300 ${isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+                }`}
             >
               <div className="flex items-center gap-2">
                 <svg
@@ -156,11 +152,10 @@ export default function LeadForm() {
 
           {/* Right: Form */}
           <div
-            className={`transition-all duration-700 delay-200 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
+            className={`transition-all duration-700 delay-200 ${isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
+              }`}
           >
             <form
               id="lead-form"
@@ -280,7 +275,7 @@ export default function LeadForm() {
               )}
 
               <p className="font-body text-[0.7rem] text-[rgba(241,241,241,0.3)] text-center leading-relaxed">
-                Al enviar, aceptas recibir comunicaciones de Coral Capital.
+                Al enviar, aceptas recibir comunicaciones de Maya Muralla.
                 Puedes darte de baja en cualquier momento.
               </p>
             </form>
