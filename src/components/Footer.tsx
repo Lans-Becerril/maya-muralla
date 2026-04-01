@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="bg-[var(--color-dark-navy-deep)] py-12 lg:py-16">
@@ -7,9 +9,15 @@ export default function Footer() {
           <div>
             <a
               href="#"
-              className="font-headline text-lg font-bold text-[var(--color-inverse-surface)]"
+              className="flex items-center"
             >
-              <span className="text-[var(--color-copper)]">Maya</span> Muralla
+              <Image
+                src="/logo-maya-muralla-grises.webp"
+                alt="Maya Muralla Logo"
+                width={200}
+                height={60}
+                className="w-auto h-10 opacity-90"
+              />
             </a>
             <p className="font-body text-sm text-[rgba(241,241,241,0.4)] mt-2 max-w-sm">
               Consultoría boutique para patrimonios inteligentes en el Caribe

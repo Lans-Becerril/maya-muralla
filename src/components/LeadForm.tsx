@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
 export default function LeadForm() {
   const sectionRef = useRef<HTMLElement>(null);
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
 
   const [nombre, setNombre] = useState("");
@@ -37,12 +39,7 @@ export default function LeadForm() {
 
       if (error) throw error;
 
-      setSubmitStatus("success");
-      setNombre("");
-      setEmail("");
-      setRango("");
-
-      setTimeout(() => setSubmitStatus("idle"), 6000);
+      router.push('/dossier');
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
       setSubmitStatus("error");
@@ -237,37 +234,10 @@ export default function LeadForm() {
               <button
                 type="submit"
                 className="btn-copper w-full text-center text-sm py-4 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                disabled={isSubmitting || submitStatus === "success"}
+                disabled={isSubmitting}
               >
-                {isSubmitting ? (
-                  "Enviando..."
-                ) : submitStatus === "success" ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m4.5 12.75 6 6 9-13.5"
-                      />
-                    </svg>
-                    Enviado Correctamente
-                  </span>
-                ) : (
-                  "Descargar Reporte Gratis"
-                )}
+                {isSubmitting ? "Enviando..." : "Descargar Reporte Gratis"}
               </button>
-
-              {submitStatus === "success" && (
-                <div className="text-center font-body text-sm text-[var(--color-copper)] mt-4 p-4 bg-[rgba(185,116,52,0.1)] border border-[rgba(185,116,52,0.2)] rounded-sm">
-                  Reporte enviado a tu correo. Nos pondremos en contacto pronto.
-                </div>
-              )}
               {submitStatus === "error" && (
                 <div className="text-center font-body text-sm text-red-500 mt-4 p-4 bg-red-900/10 border border-red-500/20 rounded-sm">
                   Ocurrió un error al enviar tus datos. Por favor, inténtalo de nuevo.
