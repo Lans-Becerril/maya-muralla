@@ -37,15 +37,13 @@ export default function Navbar() {
   return (
     <header
       id="navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-nav-scrolled" : "glass-nav"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-nav-scrolled" : "glass-nav"
+        }`}
     >
       {/* Altura dinámica de la barra completa */}
-      <nav className={`relative max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ease-in-out ${
-        scrolled ? "h-16" : "h-[5.5rem]"
-      }`}>
-        
+      <nav className={`relative max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ease-in-out ${scrolled ? "h-16" : "h-[5.5rem]"
+        }`}>
+
         {/* Logo - Anclado a la izquierda */}
         <a href="#" className="flex items-center z-10">
           <Image
@@ -54,9 +52,8 @@ export default function Navbar() {
             width={240}
             height={60}
             priority
-            className={`w-auto transition-all duration-300 ease-in-out ${
-              scrolled ? "h-7" : "h-12"
-            }`}
+            className={`w-auto transition-all duration-300 ease-in-out ${scrolled ? "h-7" : "h-12"
+              }`}
           />
         </a>
 
@@ -69,7 +66,7 @@ export default function Navbar() {
               className="text-label text-[var(--color-on-surface-variant)] hover:text-[var(--color-copper)] transition-colors duration-300"
             >
               {link.label}
-              </a>
+            </a>
           ))}
         </div>
 
@@ -78,9 +75,8 @@ export default function Navbar() {
           {/* Botón con tamaño dinámico */}
           <a
             href="#contacto"
-            className={`hidden md:inline-block btn-copper transition-all duration-300 ${
-              scrolled ? "text-xs py-2 px-5" : "text-sm py-3 px-6"
-            }`}
+            className={`hidden md:inline-block btn-copper transition-all duration-300 ${scrolled ? "text-xs py-2 px-5" : "text-sm py-3 px-6"
+              }`}
           >
             Agendar Consulta
           </a>
@@ -101,11 +97,9 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay - Altura ajustada dinámicamente al scroll */}
       <div
-        className={`fixed inset-0 bg-white/98 backdrop-blur-xl transition-all duration-500 md:hidden flex flex-col items-center justify-start pt-24 gap-8 ${
-          scrolled ? "top-16" : "top-[5.5rem]"
-        } ${
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-white/98 backdrop-blur-xl transition-all duration-500 md:hidden flex flex-col items-center justify-start pt-24 gap-8 ${scrolled ? "top-16" : "top-[5.5rem]"
+          } ${mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
       >
         {navLinks.map((link) => (
           <a
