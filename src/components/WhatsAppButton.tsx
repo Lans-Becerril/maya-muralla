@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function WhatsAppButton() {
-  const message = "Hola Erick, vi mayamuralla.com y quiero proteger el futuro de mi familia. ¿Me ayudas a agendar una asesoría para encontrar la mejor inversión según mi presupuesto? 📈";
+  const message = "Hola Erick, vi mayamuralla.com y quiero proteger el futuro de mi familia. ¿Me ayudas a agendar una asesoría para encontrar la mejor inversión según mi presupuesto? \u{1F4C8}";
   const whatsappUrl = `https://wa.me/525569080842?text=${encodeURIComponent(message)}`;
 
   return (
