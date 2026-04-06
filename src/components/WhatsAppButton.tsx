@@ -1,10 +1,13 @@
 import React from 'react';
 
 export default function WhatsAppButton() {
+  const message = "Hola Erick, vi mayamuralla.com y quiero proteger el futuro de mi familia. ¿Me ayudas a agendar una asesoría para encontrar la mejor inversión según mi presupuesto? 📈";
+  const whatsappUrl = `https://wa.me/525569080842?text=${encodeURIComponent(message)}`;
+
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <a
-        href="https://wa.me/525569080842?text=Hola%20Erick%2C%20vi%20mayamuralla.com%20y%20quiero%20proteger%20el%20futuro%20de%20mi%20familia.%20%C2%BFMe%20ayudas%20a%20agendar%20una%20asesor%C3%ADa%20para%20encontrar%20la%20mejor%20inversi%C3%B3n%20seg%C3%BAn%20mi%20presupuesto%3F%20%F0%9F%93%88"
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 bg-[#0e1c33] hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)] ring-2 ring-[#D4AF37]/20 hover:ring-[#D4AF37]/50"
