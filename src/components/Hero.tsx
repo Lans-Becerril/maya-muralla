@@ -1,21 +1,18 @@
-import Image from "next/image";
-
 export default function Hero() {
   return (
     <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image */}
-      <Image
-        src="/images/hero-bg.png"
-        alt="Penthouse de lujo en la Riviera Maya con vista al mar Caribe"
-        fill
-        priority
-        className="object-cover object-center"
-        sizes="100vw"
-        quality={90}
-      />
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/hero-timelapse.mp4" type="video/mp4" />
+      </video>
 
       {/* Dark Overlay — gradient for depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(13,28,50,0.75)] via-[rgba(13,28,50,0.60)] to-[rgba(13,28,50,0.85)]" />
@@ -29,23 +26,22 @@ export default function Hero() {
 
         {/* H1 */}
         <h1 className="text-display text-white mb-6 animate-fade-in-up opacity-0 animation-delay-100">
-          Inversiones inmobiliarias con{" "}
+          Adquiere{" "}
           <span className="text-[var(--color-copper-light)]">
-            alta rentabilidad
+            las mejores propiedades del Caribe
           </span>{" "}
-          proyectada.
+          y ponlas en piloto automático
         </h1>
 
         {/* H2 */}
         <p className="font-body text-lg md:text-xl text-[rgba(241,241,241,0.8)] max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up opacity-0 animation-delay-200">
-          Adquiere una propiedad optimizada para rentas vacacionales y recibe
-          tus ganancias mientras nosotros operamos todo.
+          Desde terrenos estratégicos hasta departamentos premium, maximizamos tu inversión y gestionamos tus rentas en Airbnb y Vrbo.
         </p>
 
         {/* CTA */}
         <div className="animate-fade-in-up opacity-0 animation-delay-300">
           <a href="#contacto" className="btn-copper text-base inline-block">
-            Solicitar Información
+            Descubrir Proyectos Disponibles
           </a>
         </div>
       </div>

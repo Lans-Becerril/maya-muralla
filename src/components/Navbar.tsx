@@ -78,7 +78,7 @@ export default function Navbar() {
             className={`hidden md:inline-block btn-copper transition-all duration-300 ${scrolled ? "text-xs py-2 px-5" : "text-sm py-3 px-6"
               }`}
           >
-            Agendar Consulta
+            Consultoría sin Costo
           </a>
 
           {/* Mobile Hamburger */}
@@ -112,7 +112,7 @@ export default function Navbar() {
           </a>
         ))}
         <a href="#contacto" onClick={handleNavClick} className="btn-copper text-sm mt-4">
-          Agendar Consulta
+          Consultoría sin Costo
         </a>
       </div>
     </header>

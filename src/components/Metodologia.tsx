@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 const steps = [
   {
     number: "01",
-    title: "Perfilamiento Financiero",
+    title: "Trazamos tu Ruta Financiera",
     description:
-      "Analizamos tu capacidad de inversión y objetivos de liquidez para diseñar una estrategia a tu medida.",
+      "Analizamos tu capacidad de inversión y filtramos el exceso de ofertas en el mercado. Te presentamos únicamente el inventario con el mayor potencial de reventa y crecimiento en la Riviera Maya, diseñando una estrategia a tu medida.",
     icon: (
       <svg
         className="w-8 h-8"
@@ -26,9 +26,9 @@ const steps = [
   },
   {
     number: "02",
-    title: "Selección de Propiedad",
+    title: "Ejecutamos una Compra Segura",
     description:
-      "Filtramos desarrollos con alta plusvalía y ubicación estratégica cerca de puntos de interés turístico.",
+      "Te llevamos de la mano durante todo el proceso legal, notarial y comercial. Simplificamos el papeleo para que adquieras tu activo a distancia con total transparencia y seguridad.",
     icon: (
       <svg
         className="w-8 h-8"
@@ -47,9 +47,9 @@ const steps = [
   },
   {
     number: "03",
-    title: "Piloto Automático",
+    title: "Multiplicamos tu Rentabilidad",
     description:
-      "Nuestro equipo administra el perfil de Airbnb, limpieza y mantenimiento. Tú solo recibes los depósitos.",
+      "Mientras tu propiedad gana valor en el mercado con el paso del tiempo, tienes la opción de activar nuestro servicio de co-hosting llave en mano. Olvídate de lidiar con inquilinos, nosotros operamos el negocio para que recibas flujo de efectivo mensual sin mover un dedo.",
     icon: (
       <svg
         className="w-8 h-8"
@@ -93,22 +93,20 @@ export default function Metodologia() {
         {/* Section header */}
         <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-24">
           <p
-            className={`text-label text-[var(--color-copper)] mb-4 transition-all duration-700 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            }`}
+            className={`text-label text-[var(--color-copper)] mb-4 transition-all duration-700 ${isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6"
+              }`}
           >
-            Metodología
+            Nuestra hoja de ruta
           </p>
           <h2
-            className={`text-headline text-[var(--color-on-surface)] transition-all duration-700 delay-100 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            }`}
+            className={`text-headline text-[var(--color-on-surface)] transition-all duration-700 delay-100 ${isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6"
+              }`}
           >
-            El camino hacia la libertad patrimonial
+            Así blindamos tu capital...
           </h2>
         </div>
 
@@ -117,11 +115,10 @@ export default function Metodologia() {
           {steps.map((step, i) => (
             <div
               key={step.number}
-              className={`relative group transition-all duration-700 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
+              className={`relative group transition-all duration-700 ${isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+                }`}
               style={{ transitionDelay: `${200 + i * 150}ms` }}
             >
               {/* Step card */}

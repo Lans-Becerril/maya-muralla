@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export default function Tesis() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -35,76 +36,75 @@ export default function Tesis() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section Label */}
         <p
-          className={`text-label text-[var(--color-copper)] mb-6 transition-all duration-700 ${
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-6"
-          }`}
+          className={`text-label text-[var(--color-copper)] mb-6 transition-all duration-700 ${isVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-6"
+            }`}
         >
-          Tesis de Inversión
+          Así es, ¡En piloto automático!
         </p>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left: Problem */}
           <div>
             <h2
-              className={`text-headline text-[var(--color-inverse-surface)] mb-8 transition-all duration-700 delay-100 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
-              }`}
+              className={`text-headline text-[var(--color-inverse-surface)] mb-8 transition-all duration-700 delay-100 ${isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+                }`}
             >
               No dejes que la inflación devore tu capital ni que la operación
               a distancia te quite el sueño.
             </h2>
             <p
-              className={`font-body text-base leading-[1.7] text-[rgba(241,241,241,0.7)] transition-all duration-700 delay-200 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
-              }`}
+              className={`font-body text-base text-justify leading-[1.7] text-[rgba(241,241,241,0.7)] transition-all duration-700 delay-200 ${isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+                }`}
             >
-              En un mercado saturado de promesas, Maya Muralla se enfoca en
-              la certeza matemática. Nuestra tesis combina la adquisición en
-              zonas de alta plusvalía con un sistema operativo impecable que
-              protege y hace crecer tu patrimonio.
+              En un mercado saturado de promesas, Maya Muralla se enfoca en la certeza matemática para que invertir en tu futuro no se sienta como una apuesta. Nuestro modelo combina la adquisición en zonas de alta plusvalía con un sistema de operación impecable que protege y hace crecer tu patrimonio.
             </p>
           </div>
 
           {/* Right: Solution */}
           <div
-            className={`bg-[rgba(255,255,255,0.03)] rounded-sm p-8 lg:p-10 transition-all duration-700 delay-300 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            }`}
+            className={`bg-[rgba(255,255,255,0.03)] rounded-sm p-8 lg:p-10 transition-all duration-700 delay-300 ${isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6"
+              }`}
           >
             <p className="text-label text-[var(--color-copper-light)] mb-4">
               Modelo Llave en Mano + Co-hosting
             </p>
             <p className="font-body text-base leading-[1.7] text-[rgba(241,241,241,0.65)]">
-              Tú eres el dueño legal del activo; nosotros somos los expertos
-              que garantizan que el activo produzca flujo de caja constante
-              sin que tengas que atender una sola llamada de huéspedes.
+              Imagina despertar cada mes con los dividendos de tu propiedad en el Caribe ya depositados, sabiendo que tu patrimonio crece mientras tú disfrutas de lo que realmente importa.
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-2 gap-8 mt-10">
-              <div>
-                <p className="font-headline text-3xl font-bold text-[var(--color-copper-light)]">
-                  12%
-                </p>
+              <div className="flex flex-col items-center text-center">
+                <Image
+                  src="/icon-roi.webp"
+                  alt="ROI Proyectado"
+                  width={180}
+                  height={180}
+                  className="mb-4"
+                />
                 <p className="text-label text-[rgba(241,241,241,0.5)] mt-1">
-                  ROI Proyectado
+                  Solo seleccionamos desarrollos que cumplen esta métrica
                 </p>
               </div>
-              <div>
-                <p className="font-headline text-3xl font-bold text-[var(--color-copper-light)]">
-                  100%
-                </p>
+              <div className="flex flex-col items-center text-center">
+                <Image
+                  src="/icon-delegated.webp"
+                  alt="Gestión Delegada"
+                  width={180}
+                  height={180}
+                  className="mb-4"
+                />
                 <p className="text-label text-[rgba(241,241,241,0.5)] mt-1">
-                  Gestión Delegada
+                  Nosotros atendemos a los huéspedes, tú solo recibes los depósitos
                 </p>
               </div>
             </div>
