@@ -71,15 +71,15 @@ export default function ReportesEstrategicos() {
   return (
     <section id="reportes" className="py-24 md:py-32 bg-[#FAFAF8] px-6 overflow-hidden">
       <div className="max-w-[78rem] mx-auto">
-        
+
         {/* ── Section Header (Layout: Izquierda / Derecha) ── */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-          
+
           {/* Izquierda: Título y Subtítulo */}
           <div className="max-w-xl">
-            <AnimatedTitle 
-              text="Inteligencia de Mercado" 
-              className="font-serif text-3xl md:text-5xl text-[var(--color-dark-navy)] font-medium leading-tight mb-4" 
+            <AnimatedTitle
+              text="Reportes y analisis del Mercado"
+              className="font-serif text-3xl md:text-5xl text-[var(--color-dark-navy)] font-medium leading-tight mb-4"
             />
             <p className="font-sans text-gray-500 text-sm md:text-base leading-relaxed">
               Análisis cuantitativo y proyecciones del mercado inmobiliario en la Riviera Maya.
@@ -91,35 +91,34 @@ export default function ReportesEstrategicos() {
             {/* Paginación */}
             <div className="hidden md:flex items-center gap-2">
               {reports.map((_, i) => (
-                <div 
-                  key={i} 
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i === activeIndex 
-                      ? "w-8 bg-[var(--color-copper)]" 
+                <div
+                  key={i}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex
+                      ? "w-8 bg-[var(--color-copper)]"
                       : "w-2 bg-gray-300"
-                  }`} 
+                    }`}
                 />
               ))}
             </div>
 
             {/* Flechas */}
             <div className="flex items-center gap-3">
-              <button 
+              <button
                 onClick={scrollLeft}
                 className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center text-gray-600 hover:bg-white hover:shadow-md transition-all duration-300"
                 aria-label="Anterior"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 18l-6-6 6-6"/>
+                  <path d="M15 18l-6-6 6-6" />
                 </svg>
               </button>
-              <button 
+              <button
                 onClick={scrollRight}
                 className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center text-gray-600 hover:bg-white hover:shadow-md transition-all duration-300"
                 aria-label="Siguiente"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 18l6-6-6-6"/>
+                  <path d="M9 18l6-6-6-6" />
                 </svg>
               </button>
             </div>
@@ -128,7 +127,7 @@ export default function ReportesEstrategicos() {
 
         {/* ── Carrusel Horizontal ─────────────────────────── */}
         <div className="relative -mx-6 px-6 md:mx-0 md:px-0">
-          <div 
+          <div
             ref={carouselRef}
             onScroll={handleScroll}
             className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-12 pt-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
@@ -137,7 +136,7 @@ export default function ReportesEstrategicos() {
               const isComingSoon = report.href === "#";
 
               return (
-                <article 
+                <article
                   key={report.id}
                   className="w-[310px] md:w-[380px] shrink-0 snap-center flex flex-col bg-white/90 backdrop-blur-sm border border-black/5 rounded-[1.25rem] shadow-sm hover:shadow-[0_12px_40px_rgba(13,28,50,0.06)] transition-all duration-500 overflow-hidden group"
                 >
@@ -183,7 +182,7 @@ export default function ReportesEstrategicos() {
                 </article>
               );
             })}
-            
+
             {/* Espacio extra al final para scroll natural */}
             <div className="w-[1px] shrink-0 md:hidden" />
           </div>
