@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AnimatedTitle from "./AnimatedTitle";
 
 interface InvestmentCardProps {
   image: string;
@@ -53,9 +54,11 @@ export default function InvestmentCard({
         </p>
 
         {/* Title */}
-        <h3 className="font-headline text-lg font-semibold text-[var(--color-on-surface)] mb-5">
-          {title}
-        </h3>
+        <AnimatedTitle
+          as="h3"
+          text={title}
+          className="font-headline text-lg font-semibold text-[var(--color-on-surface)] mb-5"
+        />
 
         {/* Stats row */}
         <div className="flex items-center justify-between">

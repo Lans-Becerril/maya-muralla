@@ -1,3 +1,5 @@
+import AnimatedTitle from "./AnimatedTitle";
+
 export default function Hero() {
   return (
     <section
@@ -25,13 +27,11 @@ export default function Hero() {
         </p>
 
         {/* H1 */}
-        <h1 className="text-display text-white mb-6 animate-fade-in-up opacity-0 animation-delay-100">
-          Adquiere{" "}
-          <span className="text-[var(--color-copper-light)]">
-            las mejores propiedades del Caribe
-          </span>{" "}
-          y ponlas en piloto automático
-        </h1>
+        <AnimatedTitle
+          as="h1"
+          text="Adquiere las mejores propiedades del Caribe y ponlas en piloto automático"
+          className="text-display text-white mb-6"
+        />
 
         {/* H2 */}
         <p className="font-body text-lg md:text-xl text-[rgba(241,241,241,0.8)] max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up opacity-0 animation-delay-200">
@@ -40,14 +40,14 @@ export default function Hero() {
 
         {/* CTA */}
         <div className="animate-fade-in-up opacity-0 animation-delay-300">
-          <a href="#contacto" className="btn-copper text-base inline-block">
+          <a href="#modelos" className="btn-copper text-base inline-block">
             Descubrir Proyectos Disponibles
           </a>
         </div>
       </div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--color-surface)] to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-00 bg-gradient-to-t from-[var(--color-surface)] to-transparent" />
     </section>
   );
 }

@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const navLinks = [
-  { label: "Tesis de Inversión", href: "#tesis" },
-  { label: "Modelos", href: "#modelos" },
-  { label: "Gestión", href: "#gestion" },
+  { label: "SERVICIOS", href: "#gestion" },
+  { label: "PROPIEDADES", href: "#modelos" },
+  { label: "CONTACTO", href: "#contacto" },
 ];
 
 export default function Navbar() {
@@ -37,8 +37,7 @@ export default function Navbar() {
   return (
     <header
       id="navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-nav-scrolled" : "glass-nav"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/30 backdrop-blur-md shadow-sm border-b border-white/20" : "bg-transparent backdrop-blur-none"}`}
     >
       {/* Altura dinámica de la barra completa */}
       <nav className={`relative max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ease-in-out ${scrolled ? "h-16" : "h-[5.5rem]"
@@ -47,7 +46,7 @@ export default function Navbar() {
         {/* Logo - Anclado a la izquierda */}
         <a href="#" className="flex items-center z-10">
           <Image
-            src="/logo-maya-muralla.webp"
+            src={scrolled ? "/logo-maya-muralla.webp" : "/logo-maya-muralla-grises.webp"}
             alt="Maya Muralla Logo"
             width={240}
             height={60}
@@ -63,7 +62,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-label text-[var(--color-on-surface-variant)] hover:text-[var(--color-copper)] transition-colors duration-300"
+              className="text-sm font-bold tracking-wide text-[var(--color-copper)] hover:opacity-70 transition-opacity duration-300"
             >
               {link.label}
             </a>
@@ -75,7 +74,7 @@ export default function Navbar() {
           {/* Botón con tamaño dinámico */}
           <a
             href="#contacto"
-            className={`hidden md:inline-block btn-copper transition-all duration-300 ${scrolled ? "text-xs py-2 px-5" : "text-sm py-3 px-6"
+            className={`hidden md:inline-block btn-copper rounded-md transition-all duration-300 ${scrolled ? "text-xs py-2 px-5" : "text-sm py-3 px-6"
               }`}
           >
             Consultoría sin Costo
@@ -88,9 +87,9 @@ export default function Navbar() {
             className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
             aria-label="Toggle menu"
           >
-            <span className={`block w-6 h-[1.5px] bg-[var(--color-on-surface)] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-[4.5px]" : ""}`} />
-            <span className={`block w-6 h-[1.5px] bg-[var(--color-on-surface)] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-6 h-[1.5px] bg-[var(--color-on-surface)] transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-[4.5px]" : ""}`} />
+            <span className={`block w-6 h-[1.5px] bg-[var(--color-copper)] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-[4.5px]" : ""}`} />
+            <span className={`block w-6 h-[1.5px] bg-[var(--color-copper)] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-6 h-[1.5px] bg-[var(--color-copper)] transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-[4.5px]" : ""}`} />
           </button>
         </div>
       </nav>
@@ -106,12 +105,12 @@ export default function Navbar() {
             key={link.href}
             href={link.href}
             onClick={handleNavClick}
-            className="text-label text-lg text-[var(--color-on-surface-variant)] hover:text-[var(--color-copper)] transition-colors"
+            className="text-lg font-bold text-[var(--color-copper)] hover:opacity-70 transition-opacity"
           >
             {link.label}
           </a>
         ))}
-        <a href="#contacto" onClick={handleNavClick} className="btn-copper text-sm mt-4">
+        <a href="#contacto" onClick={handleNavClick} className="btn-copper rounded-md text-sm mt-4">
           Consultoría sin Costo
         </a>
       </div>

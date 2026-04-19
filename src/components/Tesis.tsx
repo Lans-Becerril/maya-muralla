@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import AnimatedTitle from "./AnimatedTitle";
 
 export default function Tesis() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,29 +35,24 @@ export default function Tesis() {
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-        {/* Section Label */}
-        <p
-          className={`text-label text-[var(--color-copper)] mb-6 transition-all duration-700 ${isVisible
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-6"
-            }`}
-        >
-          Así es, ¡En piloto automático!
-        </p>
-
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left: Problem */}
-          <div>
-            <h2
-              className={`text-headline text-[var(--color-inverse-surface)] mb-8 transition-all duration-700 delay-100 ${isVisible
+          <div className="flex flex-col gap-6">
+            {/* Section Label */}
+            <p
+              className={`text-label text-[var(--color-copper)] transition-all duration-700 ${isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
                 }`}
             >
-              No dejes que la inflación devore tu capital ni que la operación
-              a distancia te quite el sueño.
-            </h2>
+              Así es, ¡En piloto automático!
+            </p>
+            <AnimatedTitle
+              as="h2"
+              text="No dejes que la inflación devore tu capital ni que la operación a distancia te quite el sueño."
+              className="text-headline text-[var(--color-inverse-surface)]"
+            />
             <p
               className={`font-body text-base text-justify leading-[1.7] text-[rgba(241,241,241,0.7)] transition-all duration-700 delay-200 ${isVisible
                 ? "opacity-100 translate-y-0"
@@ -77,8 +73,8 @@ export default function Tesis() {
             <p className="text-label text-[var(--color-copper-light)] mb-4">
               Modelo Llave en Mano + Co-hosting
             </p>
-            <p className="font-body text-base leading-[1.7] text-[rgba(241,241,241,0.65)]">
-              Imagina despertar cada mes con los dividendos de tu propiedad en el Caribe ya depositados, sabiendo que tu patrimonio crece mientras tú disfrutas de lo que realmente importa.
+            <p className="font-body text-base text-justify leading-[1.7] text-[rgba(241,241,241,0.65)]">
+              Imagina despertar cada mes con los dividendos de tu propiedad en el Caribe ya depositados, sabiendo que tu patrimonio crece mientras tú disfruta de lo que realmente importa.
             </p>
 
             {/* Stats */}

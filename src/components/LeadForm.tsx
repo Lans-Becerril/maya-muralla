@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import AnimatedTitle from "./AnimatedTitle";
 
 export default function LeadForm() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -39,9 +40,12 @@ export default function LeadForm() {
 
       if (error) throw error;
 
-      router.push('/dossier');
-    } catch (error) {
-      console.error("Error al enviar el formulario:", error);
+      router.push('/reportes-exclusivos/matriz-decision');
+    } catch (error: any) {
+      // Obligamos al navegador a imprimir las propiedades ocultas
+      console.error("Error crudo:", error);
+      console.error("Mensaje específico:", error?.message || error?.details || error?.hint || "El error está completamente vacío");
+
       setSubmitStatus("error");
       setTimeout(() => setSubmitStatus("idle"), 6000);
     } finally {
@@ -66,7 +70,7 @@ export default function LeadForm() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          {/* Left: Lead Magnet Copy */}
+          {/* Left: GUÍA GRATUITA DE INVERSIÓN Copy */}
           <div>
             <p
               className={`text-label text-[var(--color-copper)] mb-6 transition-all duration-700 ${isVisible
@@ -74,21 +78,14 @@ export default function LeadForm() {
                 : "opacity-0 translate-y-6"
                 }`}
             >
-              Lead Magnet
+              GUÍA GRATUITA DE INVERSIÓN
             </p>
 
-            <h2
-              className={`text-headline text-[var(--color-inverse-surface)] mb-6 transition-all duration-700 delay-100 ${isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-                }`}
-            >
-              Descarga el Reporte:{" "}
-              <span className="text-[var(--color-copper-light)]">
-                5 errores que destruyen la rentabilidad
-              </span>{" "}
-              en la Riviera Maya
-            </h2>
+            <AnimatedTitle
+              as="h2"
+              text="No inviertas a ciegas. Descubre qué propiedad es exactamente para ti."
+              className="text-headline text-[var(--color-inverse-surface)] mb-6"
+            />
 
             <p
               className={`font-body text-base leading-[1.7] text-[rgba(241,241,241,0.6)] mb-10 transition-all duration-700 delay-200 ${isVisible
@@ -96,9 +93,7 @@ export default function LeadForm() {
                 : "opacity-0 translate-y-6"
                 }`}
             >
-              Evita las trampas comunes de los desarrolladores y aprende a
-              identificar el verdadero potencial de un activo inmobiliario.
-              Recibe el reporte exclusivo directo en tu inbox.
+              Con tantas opciones en el mercado, es fácil sentirse abrumado o cometer un error costoso. Descarga nuestra Matriz de Decisión gratuita para descubrir, en menos de 3 minutos, si tu perfil está hecho para Terrenos, Departamentos o Preventas. Deja de adivinar y comienza a invertir con seguridad.
             </p>
 
             {/* Trust signals */}
@@ -123,7 +118,7 @@ export default function LeadForm() {
                   />
                 </svg>
                 <span className="font-body text-xs text-[rgba(241,241,241,0.5)]">
-                  100% Confidencial
+                  Protegemos tu información
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -223,10 +218,11 @@ export default function LeadForm() {
                   <option value="" disabled>
                     Selecciona un rango
                   </option>
+                  <option value="-3m">Menos de $3M MXN</option>
                   <option value="3m-5m">$3M – $5M MXN</option>
                   <option value="5m-8m">$5M – $8M MXN</option>
                   <option value="8m-15m">$8M – $15M MXN</option>
-                  <option value="15m+">$15M+ MXN</option>
+                  <option value="+15m">Más de $15M MXN</option>
                 </select>
               </div>
 
@@ -236,7 +232,7 @@ export default function LeadForm() {
                 className="btn-copper w-full text-center text-sm py-4 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Enviando..." : "Descargar Reporte Gratis"}
+                {isSubmitting ? "Enviando..." : "Descubrir mi Perfil de Inversión"}
               </button>
               {submitStatus === "error" && (
                 <div className="text-center font-body text-sm text-red-500 mt-4 p-4 bg-red-900/10 border border-red-500/20 rounded-sm">
