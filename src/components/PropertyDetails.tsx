@@ -75,7 +75,7 @@ export default function PropertyDetails({ property, onClose }: PropertyDetailsPr
               <AnimatedTitle
                 as="h1"
                 text={property.title}
-                className="text-4xl md:text-5xl font-light text-slate-900 tracking-tight mb-3"
+                className="text-2xl md:text-3xl font-light text-slate-900 tracking-tight mb-3"
               />
               <div className="flex items-center text-gray-500 gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[var(--color-copper)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -90,11 +90,11 @@ export default function PropertyDetails({ property, onClose }: PropertyDetailsPr
             <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
                 <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-1">Inversión Estimada</p>
-                <p className="text-3xl font-medium text-slate-900">{property.price}</p>
+                <p className="text-xl md:text-2xl font-medium text-slate-900">{property.price}</p>
               </div>
               <div className="md:text-right border-l md:border-l-0 md:border-r border-gray-200 pl-4 md:pl-0 md:pr-4 relative before:hidden md:before:block before:absolute before:right-0 before:top-1/2 before:-translate-y-1/2 before:h-8 before:w-px before:bg-gray-200">
                 <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-1">ROI Proyectado</p>
-                <p className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#B9935A] to-[#D4AF37]" style={{ color: 'var(--color-copper, #B9935A)', WebkitTextFillColor: 'var(--color-copper, #B9935A)' }}>
+                <p className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#B9935A] to-[#D4AF37]" style={{ color: 'var(--color-copper, #B9935A)', WebkitTextFillColor: 'var(--color-copper, #B9935A)' }}>
                   {property.projectedRoi}
                 </p>
               </div>
@@ -187,12 +187,15 @@ export default function PropertyDetails({ property, onClose }: PropertyDetailsPr
 
             {/* CTA Button */}
             <div className="pt-6 mt-auto flex justify-center">
-              <button
-                className="w-fit px-12 py-4 rounded-xl text-white font-medium text-lg tracking-wide shadow-lg shadow-[#B9935A]/20 hover:shadow-xl hover:shadow-[#B9935A]/30 transition-all hover:-translate-y-1 cursor-pointer"
+              <a
+                href="https://wa.me/525569080842?text=Hola%20Erick%2C%20vi%20mayamuralla.com%20y%20quiero%20proteger%20el%20futuro%20de%20mi%20familia.%20¿Me%20ayudas%20a%20agendar%20una%20asesoría%20para%20encontrar%20la%20mejor%20inversión%20según%20mi%20presupuesto?"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit px-12 py-4 rounded-xl text-white font-medium text-lg tracking-wide shadow-lg shadow-[#B9935A]/20 hover:shadow-xl hover:shadow-[#B9935A]/30 transition-all hover:-translate-y-1 cursor-pointer block"
                 style={{ backgroundColor: 'var(--color-copper, #B9935A)' }}
               >
                 Agendar Llamada
-              </button>
+              </a>
             </div>
 
           </div>

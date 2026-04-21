@@ -334,7 +334,7 @@ body {
 }
 
 .testimonios-title {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-headline);
   font-size: clamp(2rem, 4.5vw, 3rem);
   line-height: 1.15;
   letter-spacing: -0.015em;
@@ -427,7 +427,7 @@ body {
 
 /* Quote mark */
 .testimonial-quote-mark {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-headline);
   font-size: 4rem;
   line-height: 1;
   color: var(--color-copper);
@@ -439,13 +439,12 @@ body {
 
 /* Quote text */
 .testimonial-quote {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-body);
   font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   line-height: 1.65;
   letter-spacing: 0.005em;
   color: var(--color-dark-navy);
   font-weight: 400;
-  font-style: normal;
   flex: 1;
   display: flex;
   align-items: flex-start;

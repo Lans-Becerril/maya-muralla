@@ -52,10 +52,10 @@ export default function ReportesExclusivosPage() {
           <span className="inline-block px-4 py-1.5 border border-[#B97434]/30 text-[#B97434] text-[0.65rem] tracking-[0.25em] uppercase font-medium mb-8">
             Sala de Inteligencia
           </span>
-          <h1 className="font-['Manrope'] text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] text-white/95 max-w-4xl mb-6">
+          <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] text-white/95 max-w-4xl mb-6">
             Reportes Exclusivos e Inteligencia de Mercado
           </h1>
-          <p className="font-['Inter'] text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed">
+          <p className="font-body text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed">
             Análisis cuantitativo, marcos de decisión y estrategias reservadas
             para inversionistas que operan con datos, no con intuición.
           </p>
@@ -83,10 +83,10 @@ export default function ReportesExclusivosPage() {
 
               {/* Content */}
               <div className="mt-auto">
-                <h2 className="font-['Manrope'] text-2xl md:text-3xl font-bold text-white/90 leading-snug mb-4 group-hover:text-[#B97434] transition-colors duration-300">
+                <h2 className="font-headline text-2xl md:text-3xl font-bold text-white/90 leading-snug mb-4 group-hover:text-[#B97434] transition-colors duration-300">
                   {article.title}
                 </h2>
-                <p className="font-['Inter'] text-sm text-white/40 leading-relaxed mb-8">
+                <p className="font-body text-sm text-white/40 leading-relaxed mb-8">
                   {article.description}
                 </p>
 
@@ -117,7 +117,7 @@ export default function ReportesExclusivosPage() {
 
       {/* ── Footer ────────────────────────────────────────────── */}
       <footer className="border-t border-white/[0.06] py-16 text-center">
-        <p className="font-['Inter'] text-xs text-white/20 tracking-[0.15em] uppercase">
+        <p className="font-body text-xs text-white/20 tracking-[0.15em] uppercase">
           © 2026 Maya Muralla · Institutional Real Estate Intelligence
         </p>
       </footer>

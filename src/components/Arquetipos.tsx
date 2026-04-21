@@ -226,25 +226,33 @@ export default function Arquetipos() {
     <section
       ref={sectionRef}
       id="modelos"
-      className="pb-24 md:pb-32 bg-[var(--color-surface-low)]"
+      className="pt-16 md:pt-10 pb-24 md:pb-32 bg-[var(--color-surface-low)]"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-4">
-          <div className="relative w-[95%] max-w-[480px] md:max-w-[975px] h-[135px] md:h-[210px] mx-auto overflow-hidden">
+          <div className="relative w-[95%] max-w-[480px] md:max-w-[975px] h-[110px] md:h-[140px] mx-auto overflow-hidden">
             <div className={`absolute inset-0 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${isVisible ? "translate-y-0" : "translate-y-full"}`}>
               <Image
                 src="/tit-arque.webp"
                 alt="Inventario Seleccionado"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain"
+                className="hidden md:block object-contain object-bottom"
+                priority
+              />
+              <Image
+                src="/tit-arque-mov2.webp"
+                alt="Inventario Seleccionado"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="block md:hidden object-contain object-bottom"
                 priority
               />
             </div>
           </div>
           <p
-            className={`font-body text-base md:text-lg text-[var(--color-on-surface-variant)] leading-relaxed transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`mt-6 md:mt-8 font-body text-base md:text-lg text-[var(--color-on-surface-variant)] leading-relaxed transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
           >
             Encuentra casas, departamentos y terrenos estratégicos en la Riviera Maya diseñados para ganar valor con el tiempo. Elige tu opción ideal y pon tu inversión en piloto automático con nuestro equipo.

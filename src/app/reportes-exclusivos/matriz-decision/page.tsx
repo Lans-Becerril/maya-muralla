@@ -32,21 +32,11 @@ const STITCH_VARS: React.CSSProperties & Record<string, string> = {
 export default function MatrizDecisionPage() {
   return (
     <div style={STITCH_VARS}>
-      {/* ── Google Fonts (scoped link) ───────────────────────── */}
-      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;0,900;1,400&display=swap"
-        rel="stylesheet"
-      />
+
 
       <style>{`
         /* ── Stitch page‑scoped overrides ─────────────────────── */
         .st-page * { border-radius: 0px !important; }
-        .st-page { font-family: 'Manrope', sans-serif; }
-        .st-page .font-headline { font-family: 'Noto Serif', serif; }
-        .st-page .font-body    { font-family: 'Manrope', sans-serif; }
-        .st-page .font-label   { font-family: 'Manrope', sans-serif; }
-        .st-page .font-serif   { font-family: 'Noto Serif', serif; }
 
         .st-page .ambient-shadow {
           box-shadow: 0 20px 80px rgba(17, 24, 39, 0.06);
@@ -69,10 +59,10 @@ export default function MatrizDecisionPage() {
 
         {/* ═══════ TOP APP BAR ═══════════════════════════════════ */}
         <header className="fixed z-50 bg-[#fafafa]/80 backdrop-blur-md top-0 border-b border-[#d2c4b5]/40 flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto left-0 right-0">
-          <div className="font-serif text-lg font-bold text-[#1a1c1c]">
+          <div className="font-headline text-lg font-bold text-[#1a1c1c]">
             Matriz de Decisión Patrimonial
           </div>
-          <div className="flex items-center gap-8 font-serif uppercase tracking-widest text-sm">
+          <div className="flex items-center gap-8 font-headline uppercase tracking-widest text-sm">
             <button className="text-[#785926] hover:text-[#b9935a] transition-colors duration-200 hover:opacity-80">
               Contactar Asesor
             </button>
@@ -348,7 +338,7 @@ export default function MatrizDecisionPage() {
 
         {/* ═══════ FOOTER ═════════════════════════════════════════ */}
         <footer className="bg-[#fafafa] border-t border-[#d2c4b5]/40 flex flex-col md:flex-row justify-between items-center w-full px-8 py-12 max-w-screen-2xl mx-auto gap-4">
-          <div className="font-serif text-xl font-black text-[#1a1c1c]">
+          <div className="font-headline text-xl font-black text-[#1a1c1c]">
             El Archivo Soberano
           </div>
           <div className="flex gap-6">

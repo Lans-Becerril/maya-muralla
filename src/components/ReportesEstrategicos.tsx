@@ -79,9 +79,9 @@ export default function ReportesEstrategicos() {
           <div className="max-w-xl">
             <AnimatedTitle
               text="Reportes y analisis del Mercado"
-              className="font-serif text-3xl md:text-5xl text-[var(--color-dark-navy)] font-medium leading-tight mb-4"
+              className="text-display text-[var(--color-dark-navy)] mb-4"
             />
-            <p className="font-sans text-gray-500 text-sm md:text-base leading-relaxed">
+            <p className="font-body text-gray-500 text-sm md:text-base leading-relaxed">
               Análisis cuantitativo y proyecciones del mercado inmobiliario en la Riviera Maya.
             </p>
           </div>
@@ -151,7 +151,7 @@ export default function ReportesEstrategicos() {
                     />
                     {/* Gradiente Oscuro y Fecha */}
                     <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
-                      <span className="text-white text-[11px] font-sans tracking-[0.15em] uppercase font-medium">
+                      <span className="text-white text-label">
                         {report.date}
                       </span>
                     </div>
@@ -159,21 +159,21 @@ export default function ReportesEstrategicos() {
 
                   {/* Mitad Inferior: Texto */}
                   <div className="p-6 md:p-8 flex flex-col flex-grow">
-                    <h3 className="font-serif text-[var(--color-dark-navy)] text-[1.15rem] md:text-xl font-medium leading-[1.3] mb-3">
+                    <h3 className="text-headline text-[var(--color-dark-navy)] mb-3">
                       {report.title}
                     </h3>
-                    <p className="font-sans text-gray-500 text-[13px] md:text-sm leading-[1.65] mb-8 flex-grow opacity-90">
+                    <p className="font-body text-gray-500 text-sm leading-[1.65] mb-8 flex-grow opacity-90">
                       {report.description}
                     </p>
 
                     {isComingSoon ? (
-                      <span className="font-sans text-xs uppercase tracking-widest text-[var(--color-copper)]/50 font-medium">
+                      <span className="text-label text-[var(--color-copper)]/50">
                         Próximamente
                       </span>
                     ) : (
                       <Link
                         href={report.href}
-                        className="font-sans text-[13px] font-medium text-[var(--color-copper)] hover:text-[#8C4F10] transition-colors inline-flex items-center gap-2 group-hover:gap-3"
+                        className="font-body text-sm font-medium text-[var(--color-copper)] hover:text-[#8C4F10] transition-colors inline-flex items-center gap-2 group-hover:gap-3"
                       >
                         Leer reporte completo <span>&rarr;</span>
                       </Link>

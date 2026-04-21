@@ -28,7 +28,7 @@ const steps = [
   {
     numImage: "/dos.webp",
     title: "Ejecutamos una Compra Segura",
-    description: "Te llevamos de la mano durante todo el proceso legal, notarial y comercial. Simplificamos el papeleo para que adquieras tu activo a distancia con total transparencia y seguridad.",
+    description: "Te llevamos de la mano durante todo el proceso legal, notarial y comercial. Simplificamos el papeleo para que adquieras tu activo incluso a distancia con total transparencia y seguridad.",
     image: "/plan-2.webp",
     modalTitle: "Blindaje Jurídico",
     modalDesc: "La burocracia local y las leyes inmobiliarias pueden ser un laberinto para el inversionista foráneo. Nuestro equipo jurídico asume el control total de la validación documental, asegurando que cada propiedad esté libre de gravámenes, problemas ejidales o promesas sin sustento, permitiéndote firmar desde tu ciudad de origen con absoluta confianza.",
@@ -141,10 +141,10 @@ export default function Metodologia() {
                   <div className="text-[var(--color-copper)]">{step.icon}</div>
                 </div>
 
-                <AnimatedTitle 
-                  as="h3" 
+                <AnimatedTitle
+                  as="h3"
                   text={step.title}
-                  className="font-headline text-[var(--color-dark-navy)] text-2xl font-semibold mb-4 leading-tight" 
+                  className="font-headline text-[var(--color-dark-navy)] text-2xl font-semibold mb-4 leading-tight"
                 />
 
                 <p className="font-body text-base leading-[1.7] text-gray-600 flex-grow">
@@ -198,10 +198,10 @@ export default function Metodologia() {
 
             {/* Right Column (Content) */}
             <div className="md:w-3/5 p-8 lg:p-12 flex flex-col justify-center">
-              <AnimatedTitle 
-                as="h3" 
+              <AnimatedTitle
+                as="h3"
                 text={activeStep.modalTitle}
-                className="text-2xl md:text-3xl font-headline font-semibold text-[var(--color-dark-navy)] mb-4" 
+                className="text-xl md:text-2xl font-headline font-semibold text-[var(--color-dark-navy)] mb-4"
               />
 
               <p className="text-gray-600 font-body text-sm md:text-base leading-relaxed mb-6 text-justify">
@@ -219,11 +219,11 @@ export default function Metodologia() {
                 ))}
               </ul>
 
-              <div className="mt-8">
+              <div className="mt-8 w-full text-center">
                 <a
                   href="#contacto"
                   onClick={() => setActiveModal(null)}
-                  className="block w-full bg-[var(--color-copper)] text-white text-center font-bold py-4 rounded hover:bg-[var(--color-copper-dark)] hover:opacity-90 transition"
+                  className="inline-block px-8 py-3 bg-[var(--color-copper)] text-white text-center font-bold rounded-sm shadow-md hover:bg-[#a3652c] hover:shadow-lg transition-all"
                 >
                   Asesoría personalizada
                 </a>

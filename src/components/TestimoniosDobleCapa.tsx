@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import AnimatedTitle from "./AnimatedTitle";
 
 /* ─────────────────────────────────────────────────────────
    Data
@@ -49,10 +50,11 @@ function TestimonialCard({
   isVisible: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
     <article
-      className={`testimonial-card group relative transition-all duration-700 ${isVisible
+      className={`testimonial-card aspect-[9/16] overflow-hidden flex flex-col group relative transition-all duration-700 ${isVisible
         ? "opacity-100 translate-y-0"
         : "opacity-0 translate-y-10"
         }`}
@@ -61,16 +63,29 @@ function TestimonialCard({
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* ── LAYER 1 — Editorial Text ──────────────────────── */}
-      <div className="testimonial-layer-text">
-        {/* Avatar */}
-        <div className="testimonial-avatar-wrap">
-          <Image
-            src={testimonial.avatar}
-            alt="Inversor"
-            width={64}
-            height={64}
-            className="testimonial-avatar"
-          />
+      <div className="testimonial-layer-text h-full flex flex-col justify-between">
+        <div className="flex items-center justify-between w-full mb-4 relative z-10">
+          {/* Avatar */}
+          <div className="testimonial-avatar-wrap m-0">
+            <Image
+              src={testimonial.avatar}
+              alt="Inversor"
+              width={64}
+              height={64}
+              className="testimonial-avatar"
+            />
+          </div>
+
+          {/* Mobile "Ver Video" Button */}
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setIsVideoOpen(true); }}
+            onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setIsVideoOpen(true); }}
+            className="md:hidden flex items-center gap-2 px-3 py-1.5 text-xs rounded-full border border-[var(--color-copper)] text-[var(--color-copper)] cursor-pointer hover:bg-[var(--color-copper)]/10 transition-colors shrink-0"
+          >
+            <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+            <span>Ver Video</span>
+          </button>
         </div>
 
         {/* Opening quote mark */}
@@ -79,7 +94,10 @@ function TestimonialCard({
         </span>
 
         {/* Quote */}
-        <blockquote className="testimonial-quote">
+        <blockquote 
+          className="testimonial-quote italic flex-1 overflow-y-auto pr-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" 
+          style={{ fontStyle: 'italic' }}
+        >
           {testimonial.quote}
         </blockquote>
 
@@ -91,7 +109,7 @@ function TestimonialCard({
               alt="Firma"
               width={140}
               height={48}
-              className="testimonial-signature"
+              className="testimonial-signature mix-blend-multiply"
             />
           </div>
           <div className="testimonial-divider" />
@@ -104,24 +122,54 @@ function TestimonialCard({
 
       {/* ── LAYER 2 — Video Reveal (Curtain Slice) ────────── */}
       <div
-        className="testimonial-layer-video"
+        className={`testimonial-layer-video absolute inset-0 z-40 transition-all duration-700 ${(!isVideoOpen && !isHovered) ? 'pointer-events-none' : 'cursor-pointer'}`}
+        onClick={() => !isVideoOpen && setIsVideoOpen(true)}
         style={{
-          clipPath: isHovered
+          clipPath: isVideoOpen
             ? "inset(0 0 0 0)"
-            : "inset(0 100% 0 0)",
+            : isHovered
+            ? "inset(0 0 0 75%)"
+            : "inset(0 0 0 100%)",
         }}
       >
-        <div className="testimonial-video-inner">
+        <div className="testimonial-video-inner w-full h-full relative">
+          
+          {/* Close Video Layer Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsVideoOpen(false);
+            }}
+            className={`absolute top-6 right-6 z-50 bg-black/40 hover:bg-black/80 text-white rounded-full p-2.5 backdrop-blur-md transition-all duration-500 cursor-pointer ${isVideoOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-4 pointer-events-none"}`}
+            aria-label="Volver al texto"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Peek Indicator (Visible when hovered but not full open) */}
+          <div 
+            className={`absolute right-[8%] top-1/2 -translate-y-1/2 text-white/90 transition-all duration-500 flex flex-col items-center gap-3 ${(!isVideoOpen && isHovered) ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+          >
+            <svg className="w-6 h-6 animate-pulse text-[var(--color-copper)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span className="font-headline text-[11px] tracking-[0.2em] font-semibold uppercase rotate-180" style={{ writingMode: 'vertical-rl' }}>Video</span>
+          </div>
+
           {/* Dark overlay pattern */}
           <div className="testimonial-video-overlay" />
 
           {/* Play button */}
           <button
-            className="testimonial-play-btn"
+            className="testimonial-play-btn cursor-pointer"
             aria-label="Reproducir testimonio en video"
+            onClick={(e) => e.stopPropagation()}
             style={{
-              opacity: isHovered ? 1 : 0,
-              transform: isHovered ? "scale(1)" : "scale(0.7)",
+              opacity: isVideoOpen ? 1 : 0,
+              transform: isVideoOpen ? "scale(1)" : "scale(0.7)",
+              pointerEvents: isVideoOpen ? "auto" : "none"
             }}
           >
             <svg
@@ -143,10 +191,10 @@ function TestimonialCard({
 
           {/* Label */}
           <p
-            className="testimonial-video-label"
+            className="testimonial-video-label pointer-events-none"
             style={{
-              opacity: isHovered ? 1 : 0,
-              transform: isHovered
+              opacity: isVideoOpen ? 1 : 0,
+              transform: isVideoOpen
                 ? "translateY(0)"
                 : "translateY(8px)",
             }}
@@ -187,23 +235,21 @@ export default function TestimoniosDobleCapa() {
         {/* ── Section Header ─────────────────────────────── */}
         <div className="testimonios-header">
           <p
-            className={`text-label text-[var(--color-copper)] transition-all duration-700 ${isVisible
+            className={`text-label text-[var(--color-copper)] mb-8 md:mb-10 transition-all duration-700 ${isVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-6"
               }`}
           >
             LO QUE DICEN DE NOSOTROS
           </p>
-          <h2
-            className={`testimonios-title transition-all duration-700 delay-100 ${isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-6"
-              }`}
-          >
-            Personas como tú, que ya aseguraron
-            <br />
-            <span className="text-[var(--color-copper)]"> su pedacito en el Caribe.</span>
-          </h2>
+          <AnimatedTitle
+            text="Personas como tú, que ya aseguraron"
+            className="text-2xl md:text-3xl font-headline text-[var(--color-dark-navy)] font-bold mb-2"
+          />
+          <AnimatedTitle
+            text="su pedacito en el Caribe."
+            className="text-2xl md:text-3xl font-headline text-[var(--color-copper)] font-bold"
+          />
         </div>
 
         {/* ── Cards Grid ─────────────────────────────────── */}
