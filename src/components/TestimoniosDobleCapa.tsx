@@ -93,13 +93,10 @@ function TestimonialCard({
           &ldquo;
         </span>
 
-        {/* Scroll minimalista izquierdo (Forzado para iOS/Android) */}
+        {/* Scroll minimalista izquierdo (Corregido y permanentemente visible) */}
         <div
-          className="flex-1 overflow-y-auto pl-5 pr-2 [&::-webkit-scrollbar]:appearance-none [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar]:block [&::-webkit-scrollbar-track]:bg-[var(--color-copper)]/10 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--color-copper)] [&::-webkit-scrollbar-thumb]:rounded-full [scrollbar-width:thin] [scrollbar-color:var(--color-copper)_transparent]"
-          style={{
-            direction: "rtl",
-            WebkitOverflowScrolling: "touch" /* Suaviza el scroll en iPhone */
-          }}
+          className="flex-1 overflow-y-scroll pl-5 pr-2 [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar]:block [&::-webkit-scrollbar-track]:bg-[var(--color-copper)]/10 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--color-copper)] [&::-webkit-scrollbar-thumb]:rounded-full"
+          style={{ direction: "rtl" }}
         >
           <blockquote
             className="testimonial-quote italic m-0 p-0 text-left"
