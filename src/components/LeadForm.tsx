@@ -156,7 +156,7 @@ export default function LeadForm() {
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.864-1.048l-3.413-.553a2.25 2.25 0 0 0-2.166.94l-1.103 1.32c-3.196-1.55-5.89-4.243-7.44-7.44l1.32-1.103a2.25 2.25 0 0 0 .94-2.166l-.553-3.413a2.25 2.25 0 0 0-1.048-.864H4.5A2.25 2.25 0 0 0 2.25 6.75Z" />
                   </svg>
-                  <span className="font-body text-sm font-medium">Llamar</span>
+                  <span className="font-body text-sm font-medium">Llama Ahora</span>
                 </a>
 
                 {/* Redes Sociales */}
@@ -295,7 +295,7 @@ export default function LeadForm() {
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.864-1.048l-3.413-.553a2.25 2.25 0 0 0-2.166.94l-1.103 1.32c-3.196-1.55-5.89-4.243-7.44-7.44l1.32-1.103a2.25 2.25 0 0 0 .94-2.166l-.553-3.413a2.25 2.25 0 0 0-1.048-.864H4.5A2.25 2.25 0 0 0 2.25 6.75Z" />
                   </svg>
-                  <span className="font-body text-sm font-medium">Llamar</span>
+                  <span className="font-body text-sm font-medium">Llama Ahora</span>
                 </a>
 
                 {/* Redes Sociales */}
