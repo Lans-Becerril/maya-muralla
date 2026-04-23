@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import AnimatedTitle from "./AnimatedTitle";
 
 const steps = [
@@ -71,6 +72,8 @@ export default function Metodologia() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [activeModal, setActiveModal] = useState<number | null>(null);
+  const modalScrollRef = useRef<HTMLDivElement>(null);
+  const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -105,6 +108,38 @@ export default function Metodologia() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Inteligente Auto-Scroll
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (activeModal !== null) {
+      if (modalScrollRef.current) {
+        modalScrollRef.current.scrollTop = 0; // Reset
+      }
+      timeoutId = setTimeout(() => {
+        scrollIntervalRef.current = setInterval(() => {
+          if (modalScrollRef.current) {
+            modalScrollRef.current.scrollTop += 1;
+          }
+        }, 40);
+      }, 1500);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (scrollIntervalRef.current) {
+        clearInterval(scrollIntervalRef.current);
+      }
+    };
+  }, [activeModal]);
+
+  const stopAutoScroll = () => {
+    if (scrollIntervalRef.current) {
+      clearInterval(scrollIntervalRef.current);
+      scrollIntervalRef.current = null;
+    }
+  };
+
   const activeStep = activeModal !== null ? steps[activeModal] : null;
 
   return (
@@ -120,7 +155,7 @@ export default function Metodologia() {
           <AnimatedTitle
             as="h2"
             text="Así blindamos tu capital..."
-            className="text-headline text-[var(--color-on-surface)] text-3xl md:text-5xl font-bold"
+            className="text-2xl md:text-3xl font-headline text-[var(--color-dark-navy)] font-bold mb-2"
           />
         </div>
 
@@ -166,8 +201,12 @@ export default function Metodologia() {
           onClick={() => setActiveModal(null)}
         >
           <div
-            className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full relative flex flex-col md:flex-row overflow-hidden animate-fade-in-up max-h-[90vh] overflow-y-auto"
+            ref={modalScrollRef}
+            className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full relative flex flex-col md:flex-row overflow-hidden animate-fade-in-up max-h-[90vh] overflow-y-auto transition-all [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             onClick={(e) => e.stopPropagation()}
+            onTouchStart={stopAutoScroll}
+            onWheel={stopAutoScroll}
+            onMouseDown={stopAutoScroll}
           >
             <button
               onClick={() => setActiveModal(null)}
@@ -179,25 +218,8 @@ export default function Metodologia() {
               </svg>
             </button>
 
-            {/* Left Column (Image & Hook) */}
-            <div className="md:w-2/5 bg-[var(--color-surface)] relative flex flex-col">
-              <div className="h-64 relative w-full p-4">
-                <Image
-                  src={activeStep.modalImage}
-                  alt={activeStep.modalTitle}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-8 flex-grow flex items-center justify-center bg-gray-50">
-                <p className="text-[var(--color-copper)] font-medium text-center italic text-lg leading-relaxed">
-                  "{activeStep.hook}"
-                </p>
-              </div>
-            </div>
-
-            {/* Right Column (Content) */}
-            <div className="md:w-3/5 p-8 lg:p-12 flex flex-col justify-center">
+            {/* Left Column (Content) */}
+            <div className="md:w-3/5 p-8 lg:p-12 flex flex-col justify-center order-1 md:order-1">
               <AnimatedTitle
                 as="h3"
                 text={activeStep.modalTitle}
@@ -220,13 +242,30 @@ export default function Metodologia() {
               </ul>
 
               <div className="mt-8 w-full text-center">
-                <a
-                  href="#contacto"
+                <Link
+                  href="/#contacto"
                   onClick={() => setActiveModal(null)}
                   className="inline-block px-8 py-3 bg-[var(--color-copper)] text-white text-center font-bold rounded-sm shadow-md hover:bg-[#a3652c] hover:shadow-lg transition-all"
                 >
                   Asesoría personalizada
-                </a>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Column (Image & Hook) */}
+            <div className="md:w-2/5 bg-[var(--color-surface)] relative flex flex-col order-2 md:order-2">
+              <div className="h-64 relative w-full p-4">
+                <Image
+                  src={activeStep.modalImage}
+                  alt={activeStep.modalTitle}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="p-8 flex-grow flex items-center justify-center bg-gray-50">
+                <p className="text-[var(--color-copper)] font-medium text-center italic text-lg leading-relaxed">
+                  "{activeStep.hook}"
+                </p>
               </div>
             </div>
           </div>

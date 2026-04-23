@@ -290,7 +290,7 @@ export default function Arquetipos() {
               {displayedInventory.map((item, index) => (
                 <div
                   key={item.category}
-                  className={`relative z-0 hover:z-50 ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-12"}`}
+                  className={`relative z-0 hover:z-30 ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-12"}`}
                   style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'both' }}
                 >
                   <AnimatedTitle as="h4" text={item.category} className="text-sm font-bold text-[var(--color-copper)] mb-3 tracking-wide uppercase" />
@@ -417,7 +417,7 @@ export default function Arquetipos() {
 
       {/* Portfolio Overlay */}
       {activePortfolio && (
-        <div className="fixed inset-0 bg-[var(--color-surface)] z-[100] flex flex-col animate-fade-in-up overflow-hidden">
+        <div className="fixed inset-0 bg-[var(--color-surface)] z-40 flex flex-col animate-fade-in-up overflow-hidden pt-[6.5rem] md:pt-[5rem] pb-4">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-white">
             <button
@@ -456,7 +456,7 @@ export default function Arquetipos() {
               {activePortfolio.portfolio.map((prop: any) => (
                 <div
                   key={prop.id}
-                  className="min-w-[85vw] w-[85vw] md:min-w-[340px] md:max-w-[340px] h-[70vh] md:h-[500px] flex-shrink-0 snap-center bg-white rounded-2xl shadow-xl flex flex-col overflow-hidden relative group cursor-pointer border border-gray-100"
+                  className="min-w-[85vw] w-[85vw] md:min-w-[340px] md:max-w-[340px] h-[65vh] md:h-[450px] flex-shrink-0 snap-center bg-white rounded-2xl shadow-xl flex flex-col overflow-hidden relative group cursor-pointer border border-gray-100"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedProperty({
@@ -468,6 +468,7 @@ export default function Arquetipos() {
                       beds: prop.beds === '-' ? 0 : prop.beds,
                       baths: prop.baths === '-' ? 0 : prop.baths,
                       area: parseInt(prop.sqft) || 0,
+                      parking: prop.parking || 2,
                       images: [prop.image, activePortfolio.backImage1, activePortfolio.backImage2, activePortfolio.image],
                       description: [
                         prop.description,

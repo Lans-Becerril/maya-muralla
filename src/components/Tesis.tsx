@@ -80,25 +80,48 @@ export default function Tesis() {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-8 mt-10">
               <div className="flex flex-col items-center text-center">
-                <Image
-                  src="/icon-roi.webp"
-                  alt="ROI Proyectado"
-                  width={180}
-                  height={180}
-                  className="mb-4"
-                />
+                {/* Image Wrapper 1: Clipping/Overflow Layer */}
+                <div className="overflow-hidden mb-4 rounded-sm">
+                  {/* Image Wrapper 2: Entrance Animation Layer (Bottom-up "Curtain") */}
+                  <div
+                    className={`transition-all duration-1000 delay-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                      }`}
+                  >
+                    {/* Image Wrapper 3: Micro-interaction Layer (Hover Scale) */}
+                    <div className="transition-transform duration-500 ease-out hover:scale-105 cursor-pointer">
+                      <Image
+                        src="/icon-roi.webp"
+                        alt="ROI Proyectado"
+                        width={180}
+                        height={180}
+                      />
+                    </div>
+                  </div>
+                </div>
                 <p className="text-label text-[rgba(241,241,241,0.5)] mt-1">
                   Solo seleccionamos desarrollos que cumplen esta métrica
                 </p>
               </div>
+
               <div className="flex flex-col items-center text-center">
-                <Image
-                  src="/icon-delegated.webp"
-                  alt="Gestión Delegada"
-                  width={180}
-                  height={180}
-                  className="mb-4"
-                />
+                {/* Image Wrapper 1: Clipping/Overflow Layer */}
+                <div className="overflow-hidden mb-4 rounded-sm">
+                  {/* Image Wrapper 2: Entrance Animation Layer (Bottom-up "Curtain") */}
+                  <div
+                    className={`transition-all duration-1000 delay-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                      }`}
+                  >
+                    {/* Image Wrapper 3: Micro-interaction Layer (Hover Scale) */}
+                    <div className="transition-transform duration-500 ease-out hover:scale-105 cursor-pointer">
+                      <Image
+                        src="/icon-delegated.webp"
+                        alt="Gestión Delegada"
+                        width={180}
+                        height={180}
+                      />
+                    </div>
+                  </div>
+                </div>
                 <p className="text-label text-[rgba(241,241,241,0.5)] mt-1">
                   Nosotros atendemos a los huéspedes, tú solo recibes los depósitos
                 </p>

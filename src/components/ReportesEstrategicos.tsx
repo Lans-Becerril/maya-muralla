@@ -78,8 +78,8 @@ export default function ReportesEstrategicos() {
           {/* Izquierda: Título y Subtítulo */}
           <div className="max-w-xl">
             <AnimatedTitle
-              text="Reportes y analisis del Mercado"
-              className="text-display text-[var(--color-dark-navy)] mb-4"
+              text="Reportes y análisis del mercado"
+              className="text-2xl md:text-3xl font-headline text-[var(--color-dark-navy)] font-bold mb-4"
             />
             <p className="font-body text-gray-500 text-sm md:text-base leading-relaxed">
               Análisis cuantitativo y proyecciones del mercado inmobiliario en la Riviera Maya.
@@ -89,13 +89,13 @@ export default function ReportesEstrategicos() {
           {/* Derecha: Controles del Carrusel */}
           <div className="flex items-center gap-6">
             {/* Paginación */}
-            <div className="hidden md:flex items-center gap-2">
+            <div className="flex items-center gap-2">
               {reports.map((_, i) => (
                 <div
                   key={i}
                   className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex
-                      ? "w-8 bg-[var(--color-copper)]"
-                      : "w-2 bg-gray-300"
+                    ? "w-8 bg-[var(--color-copper)]"
+                    : "w-2 bg-gray-300"
                     }`}
                 />
               ))}
@@ -149,9 +149,9 @@ export default function ReportesEstrategicos() {
                       unoptimized
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    {/* Gradiente Oscuro y Fecha */}
-                    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
-                      <span className="text-white text-label">
+                    {/* Bloque de Fecha con efecto Cristal (Glassmorphism) */}
+                    <div className="absolute left-5 bottom-5 md:left-6 md:bottom-6">
+                      <span className="inline-block text-white text-label bg-white/20 backdrop-blur-md border border-white/30 px-4 py-2 rounded-full shadow-lg">
                         {report.date}
                       </span>
                     </div>
@@ -159,7 +159,7 @@ export default function ReportesEstrategicos() {
 
                   {/* Mitad Inferior: Texto */}
                   <div className="p-6 md:p-8 flex flex-col flex-grow">
-                    <h3 className="text-headline text-[var(--color-dark-navy)] mb-3">
+                    <h3 className="font-headline text-[var(--color-dark-navy)] text-2xl font-semibold mb-3 leading-tight">
                       {report.title}
                     </h3>
                     <p className="font-body text-gray-500 text-sm leading-[1.65] mb-8 flex-grow opacity-90">

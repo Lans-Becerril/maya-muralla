@@ -54,9 +54,7 @@ function TestimonialCard({
 
   return (
     <article
-      className={`testimonial-card aspect-[9/16] overflow-hidden flex flex-col group relative transition-all duration-700 ${isVisible
-        ? "opacity-100 translate-y-0"
-        : "opacity-0 translate-y-10"
+      className={`testimonial-card aspect-[9/16] overflow-hidden flex flex-col group relative transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       style={{ transitionDelay: `${index * 150 + 200}ms` }}
       onMouseEnter={() => setIsHovered(true)}
@@ -65,7 +63,6 @@ function TestimonialCard({
       {/* ── LAYER 1 — Editorial Text ──────────────────────── */}
       <div className="testimonial-layer-text h-full flex flex-col justify-between">
         <div className="flex items-center justify-between w-full mb-4 relative z-10">
-          {/* Avatar */}
           <div className="testimonial-avatar-wrap m-0">
             <Image
               src={testimonial.avatar}
@@ -76,33 +73,40 @@ function TestimonialCard({
             />
           </div>
 
-          {/* Mobile "Ver Video" Button */}
+          {/* Botón "Ver Video" Móvil */}
           <button
             type="button"
-            onClick={(e) => { e.stopPropagation(); setIsVideoOpen(true); }}
-            onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); setIsVideoOpen(true); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsVideoOpen(true);
+            }}
             className="md:hidden flex items-center gap-2 px-3 py-1.5 text-xs rounded-full border border-[var(--color-copper)] text-[var(--color-copper)] cursor-pointer hover:bg-[var(--color-copper)]/10 transition-colors shrink-0"
           >
-            <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+            <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
             <span>Ver Video</span>
           </button>
         </div>
 
-        {/* Opening quote mark */}
         <span className="testimonial-quote-mark" aria-hidden="true">
           &ldquo;
         </span>
 
-        {/* Quote */}
-        <blockquote 
-          className="testimonial-quote italic flex-1 overflow-y-auto pr-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" 
-          style={{ fontStyle: 'italic' }}
+        {/* Scroll minimalista izquierdo */}
+        <div
+          className="flex-1 overflow-y-auto pl-5 pr-2 [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar]:block [&::-webkit-scrollbar-track]:bg-[var(--color-copper)]/10 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--color-copper)] [&::-webkit-scrollbar-thumb]:rounded-full"
+          style={{ direction: "rtl" }}
         >
-          {testimonial.quote}
-        </blockquote>
+          <blockquote
+            className="testimonial-quote italic m-0 p-0 text-left"
+            style={{ direction: "ltr" }}
+          >
+            {testimonial.quote}
+          </blockquote>
+        </div>
 
-        {/* Signature + detail */}
-        <div className="testimonial-detail">
+        <div className="testimonial-detail mt-4">
           <div className="testimonial-signature-wrap">
             <Image
               src={testimonial.signature}
@@ -120,87 +124,90 @@ function TestimonialCard({
         </div>
       </div>
 
-      {/* ── LAYER 2 — Video Reveal (Curtain Slice) ────────── */}
+      {/* ── LAYER 2A — ESCRITORIO (Cortina Clip-Path original) ────────── */}
       <div
-        className={`testimonial-layer-video absolute inset-0 z-40 transition-all duration-700 ${(!isVideoOpen && !isHovered) ? 'pointer-events-none' : 'cursor-pointer'}`}
+        className={`hidden md:block absolute inset-0 z-40 transition-all duration-700 cursor-pointer ${!isVideoOpen && !isHovered ? "pointer-events-none" : "pointer-events-auto"
+          }`}
         onClick={() => !isVideoOpen && setIsVideoOpen(true)}
         style={{
           clipPath: isVideoOpen
             ? "inset(0 0 0 0)"
             : isHovered
-            ? "inset(0 0 0 75%)"
-            : "inset(0 0 0 100%)",
+              ? "inset(0 0 0 75%)"
+              : "inset(0 0 0 100%)",
+          WebkitClipPath: isVideoOpen
+            ? "inset(0 0 0 0)"
+            : isHovered
+              ? "inset(0 0 0 75%)"
+              : "inset(0 0 0 100%)",
         }}
       >
-        <div className="testimonial-video-inner w-full h-full relative">
-          
-          {/* Close Video Layer Button */}
+        <div className="testimonial-video-inner w-full h-full relative bg-[#0B1526]">
           <button
             onClick={(e) => {
               e.stopPropagation();
               setIsVideoOpen(false);
             }}
-            className={`absolute top-6 right-6 z-50 bg-black/40 hover:bg-black/80 text-white rounded-full p-2.5 backdrop-blur-md transition-all duration-500 cursor-pointer ${isVideoOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-4 pointer-events-none"}`}
-            aria-label="Volver al texto"
+            className={`absolute top-6 right-6 z-50 bg-white/10 hover:bg-white/20 text-white rounded-full p-2.5 transition-all duration-500 cursor-pointer ${isVideoOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+              }`}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
 
-          {/* Peek Indicator (Visible when hovered but not full open) */}
-          <div 
-            className={`absolute right-[8%] top-1/2 -translate-y-1/2 text-white/90 transition-all duration-500 flex flex-col items-center gap-3 ${(!isVideoOpen && isHovered) ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+          <div
+            className={`absolute right-[8%] top-1/2 -translate-y-1/2 text-white/90 transition-opacity duration-500 flex flex-col items-center gap-3 ${!isVideoOpen && isHovered ? "opacity-100" : "opacity-0"
+              }`}
           >
             <svg className="w-6 h-6 animate-pulse text-[var(--color-copper)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            <span className="font-headline text-[11px] tracking-[0.2em] font-semibold uppercase rotate-180" style={{ writingMode: 'vertical-rl' }}>Video</span>
+            <span className="font-headline text-[11px] tracking-[0.2em] font-semibold uppercase rotate-180" style={{ writingMode: "vertical-rl" }}>
+              Video
+            </span>
           </div>
 
-          {/* Dark overlay pattern */}
-          <div className="testimonial-video-overlay" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center opacity-60">
+            {/* Textura oscura de fondo si la necesitas */}
+          </div>
 
-          {/* Play button */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <button className="testimonial-play-btn cursor-pointer">
+              <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 1.5L20.5 13L2 24.5V1.5Z" fill="var(--color-surface-white)" stroke="var(--color-surface-white)" strokeWidth="1.5" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <p className="mt-4 text-white font-medium text-sm">Ver testimonio</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── LAYER 2B — MÓVIL (Fade In Suave y Seguro) ────────── */}
+      <div
+        className={`md:hidden absolute inset-0 z-40 transition-opacity duration-500 bg-[#0B1526] ${isVideoOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
+      >
+        <div className="w-full h-full relative flex flex-col items-center justify-center">
           <button
-            className="testimonial-play-btn cursor-pointer"
-            aria-label="Reproducir testimonio en video"
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              opacity: isVideoOpen ? 1 : 0,
-              transform: isVideoOpen ? "scale(1)" : "scale(0.7)",
-              pointerEvents: isVideoOpen ? "auto" : "none"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsVideoOpen(false);
             }}
+            className={`absolute top-6 right-6 z-50 bg-white/10 text-white rounded-full p-2.5 transition-all duration-500 ${isVideoOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+              }`}
           >
-            <svg
-              width="22"
-              height="26"
-              viewBox="0 0 22 26"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 1.5L20.5 13L2 24.5V1.5Z"
-                fill="var(--color-surface-white)"
-                stroke="var(--color-surface-white)"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
-              />
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
 
-          {/* Label */}
-          <p
-            className="testimonial-video-label pointer-events-none"
-            style={{
-              opacity: isVideoOpen ? 1 : 0,
-              transform: isVideoOpen
-                ? "translateY(0)"
-                : "translateY(8px)",
-            }}
-          >
-            Ver testimonio
-          </p>
+          <button className="testimonial-play-btn">
+            <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 1.5L20.5 13L2 24.5V1.5Z" fill="var(--color-surface-white)" stroke="var(--color-surface-white)" strokeWidth="1.5" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <p className="mt-4 text-white font-medium text-sm">Ver testimonio</p>
         </div>
       </div>
     </article>
@@ -226,18 +233,12 @@ export default function TestimoniosDobleCapa() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="testimonios"
-      className="testimonios-section"
-    >
+    <section ref={sectionRef} id="testimonios" className="testimonios-section">
       <div className="testimonios-container">
         {/* ── Section Header ─────────────────────────────── */}
         <div className="testimonios-header">
           <p
-            className={`text-label text-[var(--color-copper)] mb-8 md:mb-10 transition-all duration-700 ${isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-6"
+            className={`text-label text-[var(--color-copper)] mb-8 md:mb-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
           >
             LO QUE DICEN DE NOSOTROS

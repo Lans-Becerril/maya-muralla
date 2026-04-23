@@ -1,3 +1,4 @@
+import Link from "next/link";
 import AnimatedTitle from "./AnimatedTitle";
 
 export default function Hero() {
@@ -40,9 +41,9 @@ export default function Hero() {
 
         {/* CTA */}
         <div className="animate-fade-in-up opacity-0 animation-delay-300">
-          <a href="#modelos" className="btn-copper text-base inline-block">
+          <Link href="/#modelos" className="btn-copper text-base inline-block">
             Descubrir Proyectos Disponibles
-          </a>
+          </Link>
         </div>
       </div>
 

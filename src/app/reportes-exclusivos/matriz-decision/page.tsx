@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Matriz de Decisión Patrimonial | El Archivo Soberano",
@@ -63,9 +64,9 @@ export default function MatrizDecisionPage() {
             Matriz de Decisión Patrimonial
           </div>
           <div className="flex items-center gap-8 font-headline uppercase tracking-widest text-sm">
-            <button className="text-[#785926] hover:text-[#b9935a] transition-colors duration-200 hover:opacity-80">
+            <Link href="/#contacto" className="text-[#785926] hover:text-[#b9935a] transition-colors duration-200 hover:opacity-80">
               Contactar Asesor
-            </button>
+            </Link>
           </div>
         </header>
 
@@ -342,24 +343,24 @@ export default function MatrizDecisionPage() {
             El Archivo Soberano
           </div>
           <div className="flex gap-6">
-            <a
+            <Link
               className="font-body uppercase text-[10px] tracking-[0.1em] text-[#9e9e9e] hover:text-[#1a1c1c] transition-all"
-              href="#"
+              href="/privacidad"
             >
               Privacidad
-            </a>
-            <a
+            </Link>
+            <Link
               className="font-body uppercase text-[10px] tracking-[0.1em] text-[#9e9e9e] hover:text-[#1a1c1c] transition-all"
               href="#"
             >
               Términos
-            </a>
-            <a
+            </Link>
+            <Link
               className="font-body uppercase text-[10px] tracking-[0.1em] text-[#9e9e9e] hover:text-[#1a1c1c] transition-all"
               href="#"
             >
               Aviso Legal
-            </a>
+            </Link>
           </div>
           <div className="font-body uppercase text-[10px] tracking-[0.1em] text-[#785926]">
             © 2024 El Archivo Soberano. Todos los derechos reservados.

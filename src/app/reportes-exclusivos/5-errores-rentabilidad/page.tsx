@@ -130,9 +130,9 @@ export default function DossierPage() {
       <footer className="bg-[#151c26] text-[#e4c0a0] font-body leading-relaxed flex flex-col items-center w-full px-12 py-20 gap-8 border-t border-[#242a34]/15 relative z-20">
         <div className="text-lg font-bold text-[#dce3f0]">Maya Muralla</div>
         <nav className="flex flex-wrap justify-center gap-8 text-sm uppercase tracking-widest">
-          <a className="text-[#dce3f0]/50 hover:text-[#e4c0a0] transition-all" href="#">Agendar Sesión Estratégica</a>
-          <a className="text-[#dce3f0]/50 hover:text-[#e4c0a0] transition-all" href="#">Aviso de Privacidad</a>
-          <a className="text-[#dce3f0]/50 hover:text-[#e4c0a0] transition-all" href="#">Términos y Condiciones</a>
+          <Link className="text-[#dce3f0]/50 hover:text-[#e4c0a0] transition-all" href="/#contacto">Agendar Sesión Estratégica</Link>
+          <Link className="text-[#dce3f0]/50 hover:text-[#e4c0a0] transition-all" href="/privacidad">Aviso de Privacidad</Link>
+          <Link className="text-[#dce3f0]/50 hover:text-[#e4c0a0] transition-all" href="#">Términos y Condiciones</Link>
         </nav>
         <div className="text-xs text-[#dce3f0]/30 mt-4">
           © 2026 Maya Muralla. Institutional Real Estate Investment.

@@ -1,14 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className="bg-[var(--color-dark-navy-deep)] py-12 lg:py-16">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-8">
           {/* Branding */}
-          <div>
-            <a
-              href="#"
+          <div className="flex flex-col items-center md:items-start">
+            <Link
+              href="/"
               className="flex items-center"
             >
               <Image
@@ -18,39 +19,32 @@ export default function Footer() {
                 height={60}
                 className="w-auto h-10 opacity-90"
               />
-            </a>
-            <p className="font-body text-sm text-[rgba(241,241,241,0.4)] mt-2 max-w-sm">
-              Consultoría boutique para patrimonios inteligentes en el Caribe
-              Mexicano.
+            </Link>
+            <p className="font-body text-sm text-[rgba(241,241,241,0.4)] mt-3 md:mt-2 max-w-sm text-center md:text-left">
+              Te guiamos hacia la inversión perfecta para que puedas disfrutar del paraíso Maya.
             </p>
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-8">
-            <a
-              href="#tesis"
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+            <Link
+              href="/#gestion"
               className="text-label text-[0.65rem] text-[rgba(241,241,241,0.4)] hover:text-[var(--color-copper)] transition-colors"
             >
-              Tesis
-            </a>
-            <a
-              href="#modelos"
+              Servicios
+            </Link>
+            <Link
+              href="/#modelos"
               className="text-label text-[0.65rem] text-[rgba(241,241,241,0.4)] hover:text-[var(--color-copper)] transition-colors"
             >
-              Modelos
-            </a>
-            <a
-              href="#gestion"
-              className="text-label text-[0.65rem] text-[rgba(241,241,241,0.4)] hover:text-[var(--color-copper)] transition-colors"
-            >
-              Gestión
-            </a>
-            <a
-              href="#contacto"
+              Propiedades
+            </Link>
+            <Link
+              href="/#contacto"
               className="text-label text-[0.65rem] text-[rgba(241,241,241,0.4)] hover:text-[var(--color-copper)] transition-colors"
             >
               Contacto
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -59,10 +53,18 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-[rgba(241,241,241,0.3)]">
-            © {new Date().getFullYear()} Maya Muralla. Todos los derechos
-            reservados.
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+            <p className="font-body text-xs text-[rgba(241,241,241,0.3)]">
+              © {new Date().getFullYear()} Maya Muralla. Todos los derechos
+              reservados.
+            </p>
+            <Link
+              href="/privacidad"
+              className="font-body text-xs text-[rgba(241,241,241,0.3)] hover:text-[var(--color-copper)] transition-colors"
+            >
+              Aviso de Privacidad
+            </Link>
+          </div>
 
           {/* Social links */}
           <div className="flex items-center gap-6">
