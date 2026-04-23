@@ -73,7 +73,6 @@ function TestimonialCard({
             />
           </div>
 
-          {/* Botón "Ver Video" Móvil */}
           <button
             type="button"
             onClick={(e) => {
@@ -93,9 +92,12 @@ function TestimonialCard({
           &ldquo;
         </span>
 
-        {/* Scroll minimalista izquierdo (Corregido y permanentemente visible) */}
+        {/* 1. Regresamos a Tailwind puro (que mantenía la barra a la izquierda y visible en escritorio).
+          2. Usamos overflow-y-scroll (para forzar al celular a mostrar la pista siempre).
+          3. Usamos los colores en HEX para que Vercel no los purgue. 
+        */}
         <div
-          className="flex-1 overflow-y-scroll pl-5 pr-2 [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar]:block [&::-webkit-scrollbar-track]:bg-[var(--color-copper)]/10 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--color-copper)] [&::-webkit-scrollbar-thumb]:rounded-full"
+          className="flex-1 overflow-y-scroll pl-5 pr-2 [&::-webkit-scrollbar]:appearance-none [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-[rgba(185,116,52,0.1)] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#B97434] [&::-webkit-scrollbar-thumb]:rounded-full"
           style={{ direction: "rtl" }}
         >
           <blockquote
@@ -124,22 +126,14 @@ function TestimonialCard({
         </div>
       </div>
 
-      {/* ── LAYER 2A — ESCRITORIO (Cortina Clip-Path original) ────────── */}
+      {/* ── LAYER 2A — ESCRITORIO ────────── */}
       <div
         className={`hidden md:block absolute inset-0 z-40 transition-all duration-700 cursor-pointer ${!isVideoOpen && !isHovered ? "pointer-events-none" : "pointer-events-auto"
           }`}
         onClick={() => !isVideoOpen && setIsVideoOpen(true)}
         style={{
-          clipPath: isVideoOpen
-            ? "inset(0 0 0 0)"
-            : isHovered
-              ? "inset(0 0 0 75%)"
-              : "inset(0 0 0 100%)",
-          WebkitClipPath: isVideoOpen
-            ? "inset(0 0 0 0)"
-            : isHovered
-              ? "inset(0 0 0 75%)"
-              : "inset(0 0 0 100%)",
+          clipPath: isVideoOpen ? "inset(0 0 0 0)" : isHovered ? "inset(0 0 0 75%)" : "inset(0 0 0 100%)",
+          WebkitClipPath: isVideoOpen ? "inset(0 0 0 0)" : isHovered ? "inset(0 0 0 75%)" : "inset(0 0 0 100%)",
         }}
       >
         <div className="testimonial-video-inner w-full h-full relative bg-[#0B1526]">
@@ -168,9 +162,7 @@ function TestimonialCard({
             </span>
           </div>
 
-          <div className="absolute inset-0 flex flex-col items-center justify-center opacity-60">
-            {/* Textura oscura de fondo si la necesitas */}
-          </div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center opacity-60"></div>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <button className="testimonial-play-btn cursor-pointer">
@@ -183,7 +175,7 @@ function TestimonialCard({
         </div>
       </div>
 
-      {/* ── LAYER 2B — MÓVIL (Fade In Suave y Seguro) ────────── */}
+      {/* ── LAYER 2B — MÓVIL ────────── */}
       <div
         className={`md:hidden absolute inset-0 z-40 transition-opacity duration-500 bg-[#0B1526] ${isVideoOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
