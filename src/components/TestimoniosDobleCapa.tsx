@@ -246,14 +246,14 @@ function TestimonialCard({
             style={{
               overflowY: "scroll",
               overflowX: "hidden",
-              paddingLeft: "12px",
-              paddingRight: "8px",
+              paddingLeft: "16px",
+              paddingRight: "32px", /* AUMENTADO PARA EVITAR QUE SE CORTE EL TEXTO */
               marginRight: "-20px",
               boxSizing: "border-box",
             } as React.CSSProperties}
           >
             <blockquote
-              className="testimonial-quote italic m-0 p-0 text-left"
+              className="testimonial-quote italic m-0 p-0 text-left text-sm md:text-[12px] leading-relaxed"
             >
               {testimonial.quote}
             </blockquote>
@@ -444,16 +444,17 @@ export default function TestimoniosDobleCapa() {
   return (
     <section ref={sectionRef} id="testimonios" className="testimonios-section">
       <div className="testimonios-container">
-        <div className="testimonios-header">
+        {/* ── Section Header (Ajustado para centrarse en móvil) ─────────────────────────────── */}
+        <div className="testimonios-header flex flex-col items-center md:items-start text-center md:text-left mb-8">
           <p
-            className={`text-label text-[var(--color-copper)] mb-8 md:mb-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`text-label text-[var(--color-copper)] mb-3 md:mb-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
           >
             LO QUE DICEN DE NOSOTROS
           </p>
           <AnimatedTitle
             text="Personas como tú, que ya aseguraron"
-            className="text-2xl md:text-3xl font-headline text-[var(--color-dark-navy)] font-bold mb-2"
+            className="text-2xl md:text-3xl font-headline text-[var(--color-dark-navy)] font-bold mb-0 md:mb-2"
           />
           <AnimatedTitle
             text="su pedacito en el Caribe."
@@ -461,6 +462,7 @@ export default function TestimoniosDobleCapa() {
           />
         </div>
 
+        {/* ── Cards Grid ─────────────────────────────────── */}
         <div className="testimonios-grid">
           {testimonials.map((t, i) => (
             <TestimonialCard
