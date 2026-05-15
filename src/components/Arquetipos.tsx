@@ -64,7 +64,41 @@ const inventory = [
     backImage1: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80",
     backImage2: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80",
     portfolio: [
-      { id: 7, title: 'Lote Selva Baja', price: '$2.5M MXN', description: 'Terreno rodeado de naturaleza intacta, ideal para proyectos eco-chic.', beds: '-', baths: '-', sqft: '600 m²', image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80' },
+      {
+        id: 'boho-01',
+        title: 'BOHO Community',
+        price: 'Desde $450,000 MXN',
+        description: 'Sabemos que invertir en la Riviera Maya puede generar dudas cuando se trata de certeza legal o precios inflados. BOHO Community elimina esos riesgos.',
+        beds: 0,
+        baths: 0,
+        sqft: '213',
+        parking: 0,
+        landUse: 'H3 / H4',
+        financing: '36 MSI',
+        downPayment: '30%',
+        roi: '15% Anual Proyectado',
+        location: 'Riviera Maya, Q. Roo',
+        externalUrl: "https://www.bohoshitoushui.com/",
+        images: [
+          "/Entrega-inmediata/Lotes/port.webp",
+          "/Entrega-inmediata/Lotes/lotesboho.webp",
+          "/Entrega-inmediata/Lotes/referencias.webp"
+        ],
+        fullDescription: [
+          "Sabemos que invertir en la Riviera Maya puede generar dudas cuando se trata de certeza legal o precios inflados. BOHO Community elimina esos riesgos. Este desarrollo urbanizado te ofrece terrenos premium con título de propiedad individual y escrituración inmediata en una de las zonas de mayor crecimiento turístico, garantizando que tu capital esté protegido y trabajando para ti desde el día uno.",
+          "Diseñado bajo el exclusivo concepto 'Tulum Chic', el desarrollo fusiona la selva nativa con infraestructura de primer nivel: calles de concreto hidráulico, electricidad subterránea, agua potable y seguridad 24/7. Su densidad H3/H4 te otorga la libertad de construir hasta 4 niveles, ideal para edificar la casa de tus sueños o un modelo altamente rentable para renta vacacional en Airbnb.",
+          "A solo 10 minutos de la playa, esta es la oportunidad de asegurar tu pedacito en el Caribe antes de que los precios suban. Aprovecha el financiamiento directo a 36 meses sin intereses, sin revisión de buró y con solo el 30% de enganche. Congela tu precio hoy y construye tu futuro."
+        ],
+        amenities: [
+          "Seguridad 24/7 y Acceso Controlado",
+          "Calles de concreto hidráulico e Iluminación LED",
+          "Electricidad subterránea",
+          "Agua potable municipal",
+          "Áreas verdes y parques equipados",
+          "Título de propiedad individual (Escrituración inmediata)"
+        ],
+        image: "/Entrega-inmediata/Lotes/port.webp"
+      },
       { id: 8, title: 'Lote Premium B', price: '$4.1M MXN', description: 'Alta plusvalía proyectada gracias a la cercanía con el nuevo acceso a playa.', beds: '-', baths: '-', sqft: '1000 m²', image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80' },
       { id: 9, title: 'Lote Esmeralda', price: '$3.8M MXN', description: 'Totalmente urbanizado con servicios subterráneos listos para construir.', beds: '-', baths: '-', sqft: '850 m²', image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80' },
       { id: 19, title: 'Reserva Jaguar', price: '$5.5M MXN', description: 'Un santuario de gran extensión ideal para un compound privado familiar.', beds: '-', baths: '-', sqft: '1200 m²', image: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=800&q=80' },
@@ -108,12 +142,13 @@ const validImgIds = [
 const getImg = (seed: number) => `https://images.unsplash.com/photo-${validImgIds[seed % validImgIds.length]}?auto=format&fit=crop&w=800&q=80`;
 
 const cleanInventory = inventory.map((cat, i) => {
-  const coverImage = getImg(i * 3 + 1);
+  // Aquí también podríamos validar las imágenes de categoría principal en un futuro
+  const coverImage = cat.image?.startsWith('/') ? cat.image : getImg(i * 3 + 1);
   return {
     ...cat,
     image: coverImage,
-    backImage1: getImg(i * 3 + 2),
-    backImage2: getImg(i * 3 + 3),
+    backImage1: cat.backImage1?.startsWith('/') ? cat.backImage1 : getImg(i * 3 + 2),
+    backImage2: cat.backImage2?.startsWith('/') ? cat.backImage2 : getImg(i * 3 + 3),
     portfolio: [
       {
         id: `cover-${i}`,
@@ -127,7 +162,8 @@ const cleanInventory = inventory.map((cat, i) => {
       },
       ...cat.portfolio.map((p, j) => ({
         ...p,
-        image: getImg(i * 10 + j)
+        // 👇 AQUÍ ESTÁ LA MAGIA: Si empieza con "/", usa tu foto real. Si no, usa Unsplash.
+        image: p.image?.startsWith('/') ? p.image : getImg(i * 10 + j)
       }))
     ]
   };
@@ -147,7 +183,8 @@ const presaleInventory = cleanInventory
     portfolio: cat.portfolio.map((p, j) => ({
       ...p,
       title: p.title + " (Planos)",
-      image: getImg(i * 11 + j + 2)
+      // 👇 La misma magia para las preventas
+      image: p.image?.startsWith('/') ? p.image : getImg(i * 11 + j + 2)
     }))
   }));
 
@@ -345,57 +382,74 @@ export default function Arquetipos() {
                         {/* Amenities Row */}
                         <div>
                           <div className="flex gap-4 mt-4 pt-4 border-t border-gray-100">
-                            {/* Beds */}
-                            <div className="flex items-center gap-1.5 text-gray-600">
-                              <div
-                                className="w-5 h-5 bg-[var(--color-copper)]"
-                                style={{
-                                  maskImage: "url('/hotel.png')",
-                                  maskSize: "contain",
-                                  maskRepeat: "no-repeat",
-                                  maskPosition: "center",
-                                  WebkitMaskImage: "url('/hotel.png')",
-                                  WebkitMaskSize: "contain",
-                                  WebkitMaskRepeat: "no-repeat",
-                                  WebkitMaskPosition: "center"
-                                }}
-                              />
-                              <span className="text-sm font-medium">{item.beds}</span>
-                            </div>
-                            {/* Baths */}
-                            <div className="flex items-center gap-1.5 text-gray-600">
-                              <div
-                                className="w-5 h-5 bg-[var(--color-copper)]"
-                                style={{
-                                  maskImage: "url('/bathroom.png')",
-                                  maskSize: "contain",
-                                  maskRepeat: "no-repeat",
-                                  maskPosition: "center",
-                                  WebkitMaskImage: "url('/bathroom.png')",
-                                  WebkitMaskSize: "contain",
-                                  WebkitMaskRepeat: "no-repeat",
-                                  WebkitMaskPosition: "center"
-                                }}
-                              />
-                              <span className="text-sm font-medium">{item.baths}</span>
-                            </div>
-                            {/* Sqft */}
-                            <div className="flex items-center gap-1.5 text-gray-600">
-                              <div
-                                className="w-5 h-5 bg-[var(--color-copper)]"
-                                style={{
-                                  maskImage: "url('/surface.png')",
-                                  maskSize: "contain",
-                                  maskRepeat: "no-repeat",
-                                  maskPosition: "center",
-                                  WebkitMaskImage: "url('/surface.png')",
-                                  WebkitMaskSize: "contain",
-                                  WebkitMaskRepeat: "no-repeat",
-                                  WebkitMaskPosition: "center"
-                                }}
-                              />
-                              <span className="text-sm font-medium">{item.sqft}</span>
-                            </div>
+                            {item.beds === 0 || item.beds === "-" ? (
+                              <>
+                                <div className="flex items-center gap-1.5 text-gray-600">
+                                  <div className="w-5 h-5 bg-[var(--color-copper)]" style={{ maskImage: "url('/surface.png')", maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center", WebkitMaskImage: "url('/surface.png')", WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center" }} />
+                                  <span className="text-sm font-medium">{item.sqft}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5 text-gray-600">
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[var(--color-copper)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                  </svg>
+                                  <span className="text-sm font-medium">{item.category === "Terrenos" ? "Terreno Residencial" : "Propiedad"}</span>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                {/* Beds */}
+                                <div className="flex items-center gap-1.5 text-gray-600">
+                                  <div
+                                    className="w-5 h-5 bg-[var(--color-copper)]"
+                                    style={{
+                                      maskImage: "url('/hotel.png')",
+                                      maskSize: "contain",
+                                      maskRepeat: "no-repeat",
+                                      maskPosition: "center",
+                                      WebkitMaskImage: "url('/hotel.png')",
+                                      WebkitMaskSize: "contain",
+                                      WebkitMaskRepeat: "no-repeat",
+                                      WebkitMaskPosition: "center"
+                                    }}
+                                  />
+                                  <span className="text-sm font-medium">{item.beds}</span>
+                                </div>
+                                {/* Baths */}
+                                <div className="flex items-center gap-1.5 text-gray-600">
+                                  <div
+                                    className="w-5 h-5 bg-[var(--color-copper)]"
+                                    style={{
+                                      maskImage: "url('/bathroom.png')",
+                                      maskSize: "contain",
+                                      maskRepeat: "no-repeat",
+                                      maskPosition: "center",
+                                      WebkitMaskImage: "url('/bathroom.png')",
+                                      WebkitMaskSize: "contain",
+                                      WebkitMaskRepeat: "no-repeat",
+                                      WebkitMaskPosition: "center"
+                                    }}
+                                  />
+                                  <span className="text-sm font-medium">{item.baths}</span>
+                                </div>
+                                {/* Sqft */}
+                                <div className="flex items-center gap-1.5 text-gray-600">
+                                  <div
+                                    className="w-5 h-5 bg-[var(--color-copper)]"
+                                    style={{
+                                      maskImage: "url('/surface.png')",
+                                      maskSize: "contain",
+                                      maskRepeat: "no-repeat",
+                                      maskPosition: "center",
+                                      WebkitMaskImage: "url('/surface.png')",
+                                      WebkitMaskSize: "contain",
+                                      WebkitMaskRepeat: "no-repeat",
+                                      WebkitMaskPosition: "center"
+                                    }}
+                                  />
+                                  <span className="text-sm font-medium">{item.sqft}</span>
+                                </div>
+                              </>
+                            )}
                           </div>
 
                           <div className="text-[var(--color-copper)] font-semibold text-sm mt-4 flex items-center gap-1 w-max group-hover:translate-x-1 transition-transform">
@@ -468,13 +522,17 @@ export default function Arquetipos() {
                       beds: prop.beds === '-' ? 0 : prop.beds,
                       baths: prop.baths === '-' ? 0 : prop.baths,
                       area: parseInt(prop.sqft) || 0,
-                      parking: prop.parking || 2,
-                      images: [prop.image, activePortfolio.backImage1, activePortfolio.backImage2, activePortfolio.image],
-                      description: [
+                      parking: prop.parking !== undefined ? prop.parking : 2,
+                      landUse: prop.landUse,
+                      financing: prop.financing,
+                      downPayment: prop.downPayment,
+                      externalUrl: prop.externalUrl,
+                      images: prop.images || [prop.image, activePortfolio.backImage1, activePortfolio.backImage2, activePortfolio.image],
+                      description: prop.fullDescription || [
                         prop.description,
                         "Un espacio diseñado bajo los más altos estándares de calidad, pensado para maximizar la rentabilidad y asegurar un retorno de inversión sólido. Las vistas excepcionales y la distribución inteligente lo convierten en una oportunidad irrepetible en el mercado actual."
                       ],
-                      amenities: [
+                      amenities: prop.amenities || [
                         "Seguridad 24/7",
                         "Alberca Privada",
                         "Acceso Controlado",
@@ -511,18 +569,35 @@ export default function Arquetipos() {
                     {/* Amenities Row */}
                     <div>
                       <div className="flex gap-4 mt-4 pt-4 border-t border-gray-100">
-                        <div className="flex items-center gap-1.5 text-gray-600">
-                          <div className="w-5 h-5 bg-[var(--color-copper)]" style={{ maskImage: "url('/hotel.png')", maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center", WebkitMaskImage: "url('/hotel.png')", WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center" }} />
-                          <span className="text-sm font-medium">{prop.beds}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-gray-600">
-                          <div className="w-5 h-5 bg-[var(--color-copper)]" style={{ maskImage: "url('/bathroom.png')", maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center", WebkitMaskImage: "url('/bathroom.png')", WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center" }} />
-                          <span className="text-sm font-medium">{prop.baths}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-gray-600">
-                          <div className="w-5 h-5 bg-[var(--color-copper)]" style={{ maskImage: "url('/surface.png')", maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center", WebkitMaskImage: "url('/surface.png')", WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center" }} />
-                          <span className="text-sm font-medium">{prop.sqft}</span>
-                        </div>
+                        {prop.beds === 0 || prop.beds === "-" ? (
+                          <>
+                            <div className="flex items-center gap-1.5 text-gray-600">
+                              <div className="w-5 h-5 bg-[var(--color-copper)]" style={{ maskImage: "url('/surface.png')", maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center", WebkitMaskImage: "url('/surface.png')", WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center" }} />
+                              <span className="text-sm font-medium">{prop.sqft}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-gray-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[var(--color-copper)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                              </svg>
+                              <span className="text-sm font-medium">{prop.landUse || "Terreno Residencial"}</span>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex items-center gap-1.5 text-gray-600">
+                              <div className="w-5 h-5 bg-[var(--color-copper)]" style={{ maskImage: "url('/hotel.png')", maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center", WebkitMaskImage: "url('/hotel.png')", WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center" }} />
+                              <span className="text-sm font-medium">{prop.beds}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-gray-600">
+                              <div className="w-5 h-5 bg-[var(--color-copper)]" style={{ maskImage: "url('/bathroom.png')", maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center", WebkitMaskImage: "url('/bathroom.png')", WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center" }} />
+                              <span className="text-sm font-medium">{prop.baths}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-gray-600">
+                              <div className="w-5 h-5 bg-[var(--color-copper)]" style={{ maskImage: "url('/surface.png')", maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center", WebkitMaskImage: "url('/surface.png')", WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center" }} />
+                              <span className="text-sm font-medium">{prop.sqft}</span>
+                            </div>
+                          </>
+                        )}
                       </div>
 
                       <div className="text-[var(--color-copper)] font-semibold text-sm mt-4 flex items-center gap-1 w-max group-hover:translate-x-1 transition-transform relative z-10">
