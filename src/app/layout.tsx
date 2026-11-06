@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { Analytics } from "@vercel/analytics/next";
 
 const manrope = Manrope({
   variable: "--font-headline",
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         {children}
         <WhatsAppButton />
+        <Analytics />
       </body>
     </html>
   );
